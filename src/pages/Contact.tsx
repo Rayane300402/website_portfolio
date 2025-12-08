@@ -1,3 +1,5 @@
+import ContactProfileCard from "../components/ContactProfileCard";
+
 const Contact = () => {
   return (
     <main className=" min-h-screen w-screen overflow-x-hidden items-center justify-center bg-ember-75">
@@ -60,10 +62,7 @@ const Contact = () => {
 
         {/* RIGHT COLUMN — bottom aligned */}
         <div className="flex flex-col justify-end items-end h-full me-16">
-          {/* Your profile block goes here */}
-          <div className="w-64 h-64 bg-black/20 rounded-xl">
-            {/* Placeholder */}
-          </div>
+         <ContactProfileCard />
         </div>
       </section>
     </main>
