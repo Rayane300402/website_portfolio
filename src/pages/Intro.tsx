@@ -16,8 +16,8 @@ const Intro = () => {
   const mobileNavRef = useRef<HTMLDivElement | null>(null); // NEW: mobile nav overlay
 
   const NAV_LINKS = [
-    { label: "WORK", href: "#work" },
-    { label: "DESIGN", href: "#design" },
+    { label: "PROJECT", href: "/projects" },
+    { label: "DESIGN", href: "/design" },
     { label: "ABOUT", href: "#about" },
     { label: "CONTACT", href: "/contact" }, // todo: fix it to work with right click
     { label: "CV", href: "/docs/softwareDev.pdf", download: true },
