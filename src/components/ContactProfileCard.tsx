@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const ContactProfileCard = () => {
   return (
-    <div className="relative h-[440px] w-full flex items-start">
+    <div className="relative profile-card-h w-full flex items-start">
       {/* PROFILE IMAGE – now on the LEFT */}
       <img
         src="/img/profile.png"
@@ -12,7 +14,7 @@ const ContactProfileCard = () => {
           h-full
           w-auto
           object-cover
-          translate-x-24  
+          translate-x-24
           scale-x-[-1]    
           z-20
         "
@@ -43,7 +45,7 @@ const ContactProfileCard = () => {
         >
           <div className="flex flex-col items-center space-y-8 mt-2">
             <span className="-rotate-90 text-sm tracking-[0.2em]">
-              HOME
+              <Link to="/" className="cursor-pointer">HOME</Link>
             </span>
 
             <div className="h-28 w-px bg-white" />

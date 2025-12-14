@@ -6,7 +6,7 @@ const IntroText = () => {
       <h1
         className="
           font-segoe font-normal 
-          text-[36px] leading-[1.2]
+          text-[36px] leading-[1.2] no-select
         "
       >
         RAYANE NABOULSI
@@ -16,7 +16,7 @@ const IntroText = () => {
       <p
         className="
           font-segoe font-light 
-          text-[24px] leading-[1.4] mt-4
+          text-[24px] leading-[1.4] mt-4 no-select
         "
       >
         Software Developer / UI UX <br />
@@ -27,7 +27,7 @@ const IntroText = () => {
       <p
         className="
           font-segoe font-light 
-          text-[24px] leading-[1.4] mt-6
+          text-[24px] leading-[1.4] mt-6 no-select
         "
       >
         Currently working full-time as a Software <br />

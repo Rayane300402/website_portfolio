@@ -1,7 +1,6 @@
 const ProfileCard = () => {
   return (
-    <div className="relative h-full w-full">
-      
+    <div className="relative profile-card-h w-full">
       {/* ORANGE CONTAINER */}
       <div
         className="
@@ -24,11 +23,29 @@ const ProfileCard = () => {
           "
         >
           <div className="flex flex-col items-center space-y-4">
-            <span className="-rotate-90 text-sm tracking-[0.2em]">LI</span>
-            <span className="-rotate-90 text-sm tracking-[0.2em]">GH</span>
+            <span className="-rotate-90 text-sm tracking-[0.2em]">
+              <a
+                href="https://www.linkedin.com/in/rayane-naboulsi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer"
+              >
+                LI
+              </a>
+            </span>
+            <span className="-rotate-90 text-sm tracking-[0.2em]">
+              <a
+                href="https://github.com/Rayane300402"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer"
+              >
+                GH
+              </a>
+            </span>
             <div className="h-28 w-px bg-white" />
           </div>
-          <span className="-rotate-90 text-sm tracking-[0.2em] mb-2">
+          <span className="-rotate-90 text-sm tracking-[0.2em] mb-2 no-select">
             ©2025
           </span>
         </div>

@@ -1,32 +1,74 @@
+import { useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
 import ContactProfileCard from "../components/ContactProfileCard";
 
 const Contact = () => {
+  const contactRef = useRef<HTMLDivElement | null>(null);
+  const contactLeftRef = useRef<HTMLDivElement | null>(null);
+  const contactRightRef = useRef<HTMLDivElement | null>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      if (contactLeftRef.current) {
+        gsap.from(contactLeftRef.current, {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      }
+
+      if (contactRightRef.current) {
+        gsap.from(contactRightRef.current, {
+          y: 40,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          delay: 0.05,
+        });
+      }
+    }, contactRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className=" min-h-screen w-screen overflow-x-hidden items-center justify-center bg-ember-75">
+    <main
+      ref={contactRef}
+      className="min-h-screen w-screen overflow-x-hidden bg-ember-75"
+    >
       <section
         className="
-          w-full h-screen
-          grid grid-cols-1 md:grid-cols-2
+          w-full min-h-screen
+          grid grid-cols-1 xl:grid-cols-2
           gap-12
           py-14
+          px-6 sm:px-10 xl:px-0
         "
       >
-        {/* LEFT COLUMN — top aligned */}
-        <div className="flex flex-col justify-start h-full ms-16">
+        {/* LEFT COLUMN */}
+        <div
+          ref={contactLeftRef}
+          className="
+            flex flex-col justify-start
+            w-full
+            max-w-[720px]
+            mx-auto
+            xl:mx-0
+            xl:ms-16
+          "
+        >
           <div>
-            {/* TITLE */}
-            <h1 className="text-white text-[200px] font-glory-migella leading-[0.8]">
+            <h1 className="text-white text-[200px] font-glory-migella leading-[0.8] no-select">
               Hello...
             </h1>
 
-            {/* SUBTEXT */}
-            <p className="text-white text-[36px] mt-4 leading-tight">
+            <p className="text-white text-[36px] mt-4 leading-tight no-select">
               In need of assistance? Get in touch
               <br /> with me :)
             </p>
 
-            {/* EMAIL */}
-            <p className="text-white text-[24px] font-light pt-4">
+            <p className="text-white text-[24px] font-light pt-4 no-select">
               Email:&nbsp;
               <a
                 href="mailto:rayanenaboulsibusiness@gmail.com"
@@ -36,8 +78,7 @@ const Contact = () => {
               </a>
             </p>
 
-            {/* SOCIALS */}
-            <p className="text-white text-[24px] font-light pt-2">
+            <p className="text-white text-[24px] font-light pt-2 no-select">
               Find me online:&nbsp;
               <a
                 href="https://www.linkedin.com/in/rayane-naboulsi"
@@ -60,9 +101,19 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* RIGHT COLUMN — bottom aligned */}
-        <div className="flex flex-col justify-end items-end h-full me-16">
-         <ContactProfileCard />
+        {/* RIGHT COLUMN */}
+        <div
+          ref = {contactRightRef}
+          className="
+            flex
+            w-full
+            justify-center xl:justify-end
+            items-end
+            max-w-[720px]
+            mx-auto
+          "
+        >
+          <ContactProfileCard />
         </div>
       </section>
     </main>

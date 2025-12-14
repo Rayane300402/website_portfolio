@@ -69,12 +69,15 @@ body {
   --font-segoe-ui: "segoe-ui", ui-sans-serif, system-ui, sans-serif;
 }
 
+@utility border-hsla {
+  @apply border border-white/20;
+}
+
 @layer utilities {
   .glory-title {
     @apply text-white leading-none;
     font-family: "glory-migella";
 
-    /* Responsive to WIDTH, not height */
     font-size: clamp(48px, 10vw, 160px);
 
     transition: font-style 0.6s ease, font-family 0.6s ease;
@@ -84,16 +87,31 @@ body {
     font-family: "glory-migella-italic";
     font-style: italic;
   }
-}
-
-@utility border-hsla {
-  @apply border border-white/20;
-}
-
-@layer utilities {
 
   .link {
-    @apply underline underline-offset-4 decoration-white/60 hover:decoration-white
+    @apply underline underline-offset-4 decoration-white/60 hover:decoration-white;
+  }
+
+  .profile-card-h {
+    height: clamp(500px, 60vh, 600px);
+  }
+
+  .no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    cursor: default;
+  }
+
+  .scroll-hidden {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE / Edge legacy */
+  }
+
+  .scroll-hidden::-webkit-scrollbar {
+    display: none; /* Chrome / Safari */
   }
 
   /* .nav-hover-btn {
@@ -196,7 +214,7 @@ body {
   } */
 }
 
-/* From Uiverse.io by ashish-yadv */ 
+/* From Uiverse.io by ashish-yadv */
 .loader {
   width: 60px;
   display: flex;
@@ -243,5 +261,3 @@ body {
     scale: 0.3;
   }
 }
-
-

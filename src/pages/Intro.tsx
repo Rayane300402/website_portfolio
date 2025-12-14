@@ -3,11 +3,13 @@ import ProfileCard from "../components/ProfileCard";
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { FiMenu } from "react-icons/fi";
 import { gsap } from "gsap";
-import NavWord from "../components/nav";
+import NavWord from "../components/Nav";
 
 const Intro = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    return sessionStorage.getItem("introLoaded") !== "1";
+  });
 
   const introRef = useRef<HTMLDivElement | null>(null); // whole page scope
   const profileBlockRef = useRef<HTMLDivElement | null>(null); // left profile block
@@ -17,14 +19,20 @@ const Intro = () => {
     { label: "WORK", href: "#work" },
     { label: "DESIGN", href: "#design" },
     { label: "ABOUT", href: "#about" },
-    { label: "CONTACT", href: "/contact" },
+    { label: "CONTACT", href: "/contact" }, // todo: fix it to work with right click
     { label: "CV", href: "/docs/softwareDev.pdf", download: true },
   ];
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (!isLoading) return;
+
+    const timer = window.setTimeout(() => {
+      setIsLoading(false);
+      sessionStorage.setItem("introLoaded", "1");
+    }, 3000);
+
+    return () => window.clearTimeout(timer);
+  }, [isLoading]);
 
   useLayoutEffect(() => {
     if (isLoading) return;
@@ -156,8 +164,17 @@ const Intro = () => {
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="hidden lg:flex flex-col justify-center me-16 h-full pl-24 pe-14">
-          <div className="hidden lg:flex flex-col justify-center me-16 h-full pl-24 pe-14">
+        <div className="hidden lg:flex h-full me-16 pl-24 pe-14">
+          <div
+            className="
+      flex flex-col justify-center
+      h-full w-full
+      overflow-y-auto
+      overscroll-contain
+      scroll-hidden
+      pr-2
+    "
+          >
             {NAV_LINKS.map((item) => (
               <h2 key={item.label}>
                 <NavWord
