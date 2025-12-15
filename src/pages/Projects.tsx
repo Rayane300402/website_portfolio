@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import TopBar from "../components/TopBar";
+import CustomTextBox from "../components/CustomTextBox";
 
 const Projects = () => {
     const rightScrollRef = useRef<HTMLDivElement | null>(null);
@@ -20,9 +21,13 @@ const Projects = () => {
 
       <section className="flex-1 min-h-0 w-full grid grid-cols-1 md:grid-cols-2 gap-10 px-6 sm:px-10 md:px-12 lg:px-16 pb-12">
         {/* LEFT  */}
-        <div className="min-h-0 flex items-start justify-center md:block">
+         <div className="min-h-0 flex items-start justify-center md:block">
           <div className="w-full max-w-[720px] md:max-w-none">
-            <div className="h-[240px] w-full bg-white/10 rounded-md" />
+            <CustomTextBox
+              title="Designs"
+              p1="This is a showcase of my best and latest work. Form the simplest to more complex projects. Company projects and self made projects "
+              p2="The development and coding world keeps evolving, everyday there is a new update, and new change, new tools to use & my work also has evolved even if it has only been 2 years. I keep learning and gaining new skills everyday"
+            />
           </div>
         </div>
 

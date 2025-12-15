@@ -181,7 +181,7 @@ const Intro = () => {
                   label={item.label}
                   href={item.href}
                   download={item.download}
-                  className="nav-word"
+                  className="nav-word glory-title text-[clamp(48px,10vw,160px)]"
                 />
               </h2>
             ))}

@@ -5,6 +5,7 @@ body {
   font-weight: 400; /* regular weight */
   width: 100dvw;
   overflow-x: hidden;
+  color: #fff;
   margin: 0; /* recommended */
   padding: 0; /* recommended */
 }
@@ -75,17 +76,44 @@ body {
 
 @layer utilities {
   .glory-title {
-    @apply text-white leading-none;
+    @apply leading-none inline-block;
     font-family: "glory-migella";
-
-    font-size: clamp(48px, 10vw, 160px);
-
-    transition: font-style 0.6s ease, font-family 0.6s ease;
+    will-change: transform;
+    transition: font-style 0.35s ease, font-family 0.35s ease;
+    transition-delay: 0s, 0s;
   }
 
   .glory-title:hover {
+    animation: glory-weight-shift 420ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    /* font changes AFTER the motion */
+    transition-delay: 420ms, 420ms;
     font-family: "glory-migella-italic";
     font-style: italic;
+  }
+
+  .glory-title:not(:hover) {
+    transition-delay: 0s, 0s;
+  }
+
+  @keyframes glory-weight-shift {
+    0% {
+      transform: translateX(0) skewX(0deg);
+    }
+    60% {
+      transform: translateX(2px) skewX(-5deg);
+    }
+    100% {
+      transform: translateX(0) skewX(0deg);
+    }
+  }
+  
+  .glory-new {
+    @apply rounded-full bg-forest-50 text-ember-75 font-segoe-ui font-normal tracking-wide leading-none inline-flex items-center justify-center shrink-0 ms-5;
+
+    font-size: clamp(12px, 1.6vw, 28px);
+
+    padding-inline: clamp(10px, 1.4vw, 20px);
+    padding-block: clamp(6px, 0.9vw, 12px);
   }
 
   .link {
@@ -114,8 +142,8 @@ body {
     display: none; /* Chrome / Safari */
   }
 
-  .main-setup{
-    @apply h-screen w-screen overflow-hidden bg-ember-75 flex flex-col
+  .main-setup {
+    @apply h-screen w-screen overflow-hidden bg-ember-75 flex flex-col;
   }
 
   /* .nav-hover-btn {

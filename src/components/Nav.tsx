@@ -2,10 +2,17 @@ interface NavWordProps {
   label: string;
   href: string;
   className?: string; // custom classes like nav-word or nav-word-mobile
-  download?: boolean; // optional flag for CV
+  download?: boolean; //  for CV
+  isNew?: boolean; // for projects and designs
 }
 
-const NavWord = ({ label, href, className = "", download = false }: NavWordProps) => {
+const NavWord = ({
+  label,
+  href,
+  className = "",
+  download = false,
+  isNew = false,
+}: NavWordProps) => {
   const isPdf = href.endsWith(".pdf") || download;
 
   return (
@@ -13,9 +20,19 @@ const NavWord = ({ label, href, className = "", download = false }: NavWordProps
       href={href}
       target={isPdf ? "_blank" : undefined}
       rel={isPdf ? "noopener noreferrer" : undefined}
-      className={`glory-title ${className}`}
+      className="inline-flex items-center gap-3"
     >
-      {label}
+      <span className={` ${className}`}>{label}</span>
+
+      {isNew && (
+        <span
+          className="
+            glory-new
+          "
+        >
+          NEW
+        </span>
+      )}
     </a>
   );
 };

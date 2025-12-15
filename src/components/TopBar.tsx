@@ -13,18 +13,20 @@ const TopBar = ({
 }: TopBarProps) => {
   return (
     <div className={`w-full flex items-center ${className}`}>
-      <span className="hidden md:block text-white  tracking-[0.18em] flex-1 font-segoe-ui font-light">
+      <span className="hidden md:block text-white  tracking-[0.18em] flex-1 font-segoe-ui font-light text-[18px]">
         {year}
       </span>
 
-      <div className="w-40 mx-6 h-px bg-white/50 "></div>
+      <div className="w-40 mx-6 h-px bg-white/50 hidden md:block"></div>
 
       <Link
         to={homeHref}
-        className="text-white  tracking-[0.18em] cursor-pointer font-segoe-ui font-light"
+        className="text-white  tracking-[0.18em] cursor-pointer font-segoe-ui font-light text-[18px]"
       >
         HOME
       </Link>
+
+      <div className="w-40 mx-6 h-px bg-white/50 md:hidden"></div>
     </div>
   );
 };

@@ -16,6 +16,10 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/design" element={<Design />} />
         <Route path="/contact" element={<Contact />} />
+         {/* <Route path="/salemtek" element={<Salemtek />} /> */}
+         {/* <Route path="/avoo" element={<AVOO />} /> */}
+         {/* <Route path="/series-scribe" element={<SeriesScribe />} /> */}
+         {/* <Route path="/orderly-flow" element={<OrderlyFlow />} /> */}
       </Routes>
     </Router>
   )
