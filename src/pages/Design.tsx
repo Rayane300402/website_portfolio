@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import TopBar from "../components/TopBar";
 import CustomTextBox from "../components/CustomTextBox";
 import NavWord from "../components/Nav";
@@ -7,25 +7,27 @@ const DESIGN_LINKS = [
   { label: "Salemtek", href: "/projects", isNew: true },
   { label: "A.V.O.O", href: "/design", isNew: false },
   { label: "SeriesScribe", href: "#about", isNew: false },
-  { label: "OrderlyFlow", href: "/contact", isNew: false }, // todo: fix it to work with right click
+  { label: "OrderlyFlow", href: "/contact", isNew: false },
 ];
 
 const Design = () => {
   const rightScrollRef = useRef<HTMLDivElement | null>(null);
 
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    // md breakpoint = 768px
+    if (window.innerWidth < 768) return; // ✅ allow normal page scroll on sm
+
+    const el = rightScrollRef.current;
+    if (!el) return;
+
+    el.scrollTop += e.deltaY;
+    e.preventDefault(); // ✅ only block page scroll on md+
+  }, []);
+
   return (
     <main
-      className="main-setup"
-      onWheel={(e) => {
-        const el = rightScrollRef.current;
-        if (!el) return;
-
-        // route the wheel delta to the right column
-        el.scrollTop += e.deltaY;
-
-        // stop the browser from trying to scroll the page
-        e.preventDefault();
-      }}
+      className="main-setup overflow-y-auto md:overflow-hidden"
+      onWheel={handleWheel}
     >
       <div className="shrink-0 px-16 pt-14">
         <TopBar className="mb-8" homeHref="/" />
@@ -48,7 +50,9 @@ const Design = () => {
           <div className="w-full max-w-[720px] md:max-w-none h-full min-h-0">
             <div
               ref={rightScrollRef}
-              className="h-full overflow-y-auto scroll-hidden"
+              className=" md:h-full
+                overflow-visible md:overflow-y-auto
+                scroll-hidden"
             >
               <div className="p-6 space-y-6">
                 {DESIGN_LINKS.map((item) => (

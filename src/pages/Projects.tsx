@@ -1,19 +1,35 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import TopBar from "../components/TopBar";
 import CustomTextBox from "../components/CustomTextBox";
+import NavWord from "../components/Nav";
+
+const PROJECT_LINKS = [
+  { label: "Laced", href: "/design", isNew: false },
+  { label: "Zentry", href: "/projects", isNew: true },
+  { label: "OrderlyFlow", href: "/contact", isNew: false },
+  { label: "ShareCare", href: "/contact", isNew: false },
+  { label: "TSB2.0", href: "#about", isNew: false },
+  { label: "VirtuEscape", href: "/contact", isNew: false },
+];
 
 const Projects = () => {
-    const rightScrollRef = useRef<HTMLDivElement | null>(null);
-  
+  const rightScrollRef = useRef<HTMLDivElement | null>(null);
+
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    // md breakpoint = 768px
+    if (window.innerWidth < 768) return; // ✅ allow normal page scroll on sm
+
+    const el = rightScrollRef.current;
+    if (!el) return;
+
+    el.scrollTop += e.deltaY;
+    e.preventDefault(); // ✅ only block page scroll on md+
+  }, []);
+
   return (
     <main
-      className="main-setup"
-      onWheel={(e) => {
-        const el = rightScrollRef.current;
-        if (!el) return;
-        el.scrollTop += e.deltaY;
-        e.preventDefault();
-      }}
+      className="main-setup overflow-y-auto md:overflow-hidden"
+      onWheel={handleWheel}
     >
       <div className="shrink-0 px-16 pt-14">
         <TopBar className="mb-8" homeHref="/" />
@@ -21,10 +37,10 @@ const Projects = () => {
 
       <section className="flex-1 min-h-0 w-full grid grid-cols-1 md:grid-cols-2 gap-10 px-6 sm:px-10 md:px-12 lg:px-16 pb-12">
         {/* LEFT  */}
-         <div className="min-h-0 flex items-start justify-center md:block">
+        <div className="min-h-0 flex items-start justify-center md:block">
           <div className="w-full max-w-[720px] md:max-w-none">
             <CustomTextBox
-              title="Designs"
+              title="Projects"
               p1="This is a showcase of my best and latest work. Form the simplest to more complex projects. Company projects and self made projects "
               p2="The development and coding world keeps evolving, everyday there is a new update, and new change, new tools to use & my work also has evolved even if it has only been 2 years. I keep learning and gaining new skills everyday"
             />
@@ -36,14 +52,21 @@ const Projects = () => {
           <div className="w-full max-w-[720px] md:max-w-none h-full min-h-0">
             <div
               ref={rightScrollRef}
-              className="h-full overflow-y-auto scroll-hidden bg-white/10 rounded-md"
+              className="  md:h-full
+                overflow-visible md:overflow-y-auto
+                scroll-hidden"
             >
               <div className="p-6 space-y-6">
-                <div className="h-[220px] bg-white/10 rounded" />
-                <div className="h-[220px] bg-white/10 rounded" />
-                <div className="h-[220px] bg-white/10 rounded" />
-                <div className="h-[220px] bg-white/10 rounded" />
-                <div className="h-[220px] bg-white/10 rounded" />
+                {PROJECT_LINKS.map((item) => (
+                  <h2 key={item.label}>
+                    <NavWord
+                      label={item.label}
+                      href={item.href}
+                      isNew={item.isNew}
+                      className="nav-word glory-title text-[clamp(40px,8vw,160px)] "
+                    />
+                  </h2>
+                ))}
               </div>
             </div>
           </div>

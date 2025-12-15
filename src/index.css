@@ -106,7 +106,7 @@ body {
       transform: translateX(0) skewX(0deg);
     }
   }
-  
+
   .glory-new {
     @apply rounded-full bg-forest-50 text-ember-75 font-segoe-ui font-normal tracking-wide leading-none inline-flex items-center justify-center shrink-0 ms-5;
 
@@ -143,7 +143,7 @@ body {
   }
 
   .main-setup {
-    @apply h-screen w-screen overflow-hidden bg-ember-75 flex flex-col;
+    @apply h-screen w-screen overflow-x-hidden bg-ember-75 flex flex-col;
   }
 
   /* .nav-hover-btn {
