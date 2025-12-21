@@ -1,7 +1,8 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef } from "react";
 import TopBar from "../components/TopBar";
 import CustomTextBox from "../components/CustomTextBox";
 import NavWord from "../components/Nav";
+import { gsap } from "gsap";
 
 const PROJECT_LINKS = [
   { label: "Laced", href: "/design", isNew: false },
@@ -14,6 +15,8 @@ const PROJECT_LINKS = [
 
 const Projects = () => {
   const rightScrollRef = useRef<HTMLDivElement | null>(null);
+  const wipeRef = useRef<HTMLDivElement | null>(null);
+  const projectRef = useRef<HTMLDivElement | null>(null);
 
   const handleWheel = useCallback((e: React.WheelEvent) => {
     // md breakpoint = 768px
@@ -26,11 +29,50 @@ const Projects = () => {
     e.preventDefault(); // ✅ only block page scroll on md+
   }, []);
 
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+
+      if (wipeRef.current) {
+        tl.fromTo(
+          wipeRef.current,
+          { height: "100%" },
+          {
+            height: "0%",
+            duration: 0.9,
+            ease: "power4.inOut",
+          }
+        );
+      }
+
+      tl.from(
+        ".nav-word",
+        {
+          x: 80,
+          opacity: 0,
+          skewX: -12,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0.07,
+        },
+        "-=0.25"
+      );
+    }, projectRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
     <main
       className="main-setup overflow-y-auto md:overflow-hidden"
       onWheel={handleWheel}
+      ref={projectRef}
     >
+      <div
+        ref={wipeRef}
+        className="fixed inset-x-0 top-0 z-50 bg-forest-50"
+        style={{ height: "100%" }}
+      />
+
       <div className="shrink-0 px-16 pt-14">
         <TopBar className="mb-8" homeHref="/" />
       </div>

@@ -5,6 +5,14 @@ import { FiMenu } from "react-icons/fi";
 import { gsap } from "gsap";
 import NavWord from "../components/Nav";
 
+  const NAV_LINKS = [
+    { label: "PROJECT", href: "/projects" },
+    { label: "DESIGN", href: "/design" },
+    { label: "ABOUT", href: "#about" },
+    { label: "CONTACT", href: "/contact" },
+    { label: "CV", href: "/docs/softwareDev.pdf", download: true },
+  ];
+
 const Intro = () => {
   const rightScrollRef = useRef<HTMLDivElement | null>(null);
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -14,13 +22,6 @@ const Intro = () => {
 
   const wipeRef = useRef<HTMLDivElement | null>(null); // wipe animation
 
-  const NAV_LINKS = [
-    { label: "PROJECT", href: "/projects" },
-    { label: "DESIGN", href: "/design" },
-    { label: "ABOUT", href: "#about" },
-    { label: "CONTACT", href: "/contact" }, // todo: fix it to work with right click
-    { label: "CV", href: "/docs/softwareDev.pdf", download: true },
-  ];
 
    const handleWheel = useCallback((e: React.WheelEvent) => {
     // md breakpoint = 768px
