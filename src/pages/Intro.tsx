@@ -1,19 +1,18 @@
 import IntroText from "../components/IntroText";
 import ProfileCard from "../components/ProfileCard";
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useState, useLayoutEffect, useRef, useCallback } from "react";
 import { FiMenu } from "react-icons/fi";
 import { gsap } from "gsap";
 import NavWord from "../components/Nav";
 
 const Intro = () => {
+  const rightScrollRef = useRef<HTMLDivElement | null>(null);
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(() => {
-    return sessionStorage.getItem("introLoaded") !== "1";
-  });
-
   const introRef = useRef<HTMLDivElement | null>(null); // whole page scope
   const profileBlockRef = useRef<HTMLDivElement | null>(null); // left profile block
   const mobileNavRef = useRef<HTMLDivElement | null>(null); // NEW: mobile nav overlay
+
+  const wipeRef = useRef<HTMLDivElement | null>(null); // wipe animation
 
   const NAV_LINKS = [
     { label: "PROJECT", href: "/projects" },
@@ -23,41 +22,53 @@ const Intro = () => {
     { label: "CV", href: "/docs/softwareDev.pdf", download: true },
   ];
 
-  useEffect(() => {
-    if (!isLoading) return;
+   const handleWheel = useCallback((e: React.WheelEvent) => {
+    // md breakpoint = 768px
+    if (window.innerWidth < 768) return; // ✅ allow normal page scroll on sm
 
-    const timer = window.setTimeout(() => {
-      setIsLoading(false);
-      sessionStorage.setItem("introLoaded", "1");
-    }, 3000);
+    const el = rightScrollRef.current;
+    if (!el) return;
 
-    return () => window.clearTimeout(timer);
-  }, [isLoading]);
+    el.scrollTop += e.deltaY;
+    e.preventDefault(); // ✅ only block page scroll on md+
+  }, []);
 
   useLayoutEffect(() => {
-    if (isLoading) return;
-
     const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+
+      if(wipeRef.current) {
+        tl.fromTo(
+          wipeRef.current,
+          {height:"100%"},
+          {
+            height: "0%",
+            duration: 0.9,
+            ease: "power4.inOut"
+          }
+        );
+      }
+
       if (profileBlockRef.current) {
-        gsap.from(profileBlockRef.current, {
+        tl.from(profileBlockRef.current, {
           y: 40,
           opacity: 0,
           duration: 0.9,
           ease: "power3.out",
-        });
+        }, "-=0.25");
       }
 
-      gsap.from(".nav-word", {
+      tl.from(".nav-word", {
         x: 80,
         opacity: 0,
         skewX: -12,
         duration: 0.6,
         ease: "power3.out",
         stagger: 0.07,
-      });
+      }, "-=0.55");
     }, introRef);
     return () => ctx.revert();
-  }, [isLoading]);
+  }, []);
 
   useLayoutEffect(() => {
     if (!isNavOpen) return; // only animate when menu opens
@@ -76,23 +87,20 @@ const Intro = () => {
     return () => ctx.revert();
   }, [isNavOpen]);
 
-  if (isLoading) {
-    return (
-      <main className="h-screen w-screen flex items-center justify-center bg-forest-50">
-        <div className="loader">
-          <li className="ball"></li>
-          <li className="ball"></li>
-          <li className="ball"></li>
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main
       ref={introRef}
+      onWheel={handleWheel}
       className=" h-screen w-screen overflow-x-hidden overflow-y-hidden bg-forest-50 flex items-center justify-center"
     >
+          {/* Wipe overlay (ember) */}
+      <div
+        ref={wipeRef}
+        className="fixed inset-x-0 top-0 z-50 bg-ember-75"
+        style={{ height: "100%" }}
+      />
+
+
       {/* hamburger icon on md and smaller */}
       <button
         type="button"
@@ -166,11 +174,11 @@ const Intro = () => {
         {/* RIGHT COLUMN */}
         <div className="hidden lg:flex h-full me-16 pl-24 pe-14">
           <div
+            ref={rightScrollRef}
             className="
       flex flex-col justify-center
       h-full w-full
-      overflow-y-auto
-      overscroll-contain
+      
       scroll-hidden
       pr-2
     "
