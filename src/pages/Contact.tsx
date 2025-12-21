@@ -6,26 +6,49 @@ const Contact = () => {
   const contactRef = useRef<HTMLDivElement | null>(null);
   const contactLeftRef = useRef<HTMLDivElement | null>(null);
   const contactRightRef = useRef<HTMLDivElement | null>(null);
+  const wipeRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+
+      if (wipeRef.current) {
+        tl.fromTo(
+          wipeRef.current,
+          { height: "100%" },
+          {
+            height: "0%",
+            duration: 0.9,
+            ease: "power4.inOut",
+          }
+        );
+      }
+
       if (contactLeftRef.current) {
-        gsap.from(contactLeftRef.current, {
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        });
+        tl.from(
+          contactLeftRef.current,
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.25"
+        );
       }
 
       if (contactRightRef.current) {
-        gsap.from(contactRightRef.current, {
-          y: 40,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          delay: 0.05,
-        });
+        tl.from(
+          contactRightRef.current,
+          {
+            y: 40,
+            opacity: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            delay: 0.05,
+          },
+          "-=0.55"
+        );
       }
     }, contactRef);
 
@@ -37,6 +60,12 @@ const Contact = () => {
       ref={contactRef}
       className="min-h-screen w-screen overflow-x-hidden bg-ember-75"
     >
+      <div
+        ref={wipeRef}
+        className="fixed inset-x-0 bottom-0 z-50 bg-forest-50"
+        style={{ height: "100%" }}
+      />
+
       <section
         className="
           w-full min-h-screen
@@ -103,7 +132,7 @@ const Contact = () => {
 
         {/* RIGHT COLUMN */}
         <div
-          ref = {contactRightRef}
+          ref={contactRightRef}
           className="
             flex
             w-full
