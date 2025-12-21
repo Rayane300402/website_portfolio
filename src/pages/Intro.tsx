@@ -9,7 +9,7 @@ import OverlayAnimation from "../components/OverlayAnimation";
   const NAV_LINKS = [
     { label: "PROJECT", href: "/projects" },
     { label: "DESIGN", href: "/design" },
-    { label: "ABOUT", href: "#about" },
+    { label: "ABOUT", href: "/about" },
     { label: "CONTACT", href: "/contact" },
     { label: "CV", href: "/docs/softwareDev.pdf", download: true },
   ];
