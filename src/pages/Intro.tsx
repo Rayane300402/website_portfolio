@@ -4,6 +4,7 @@ import { useState, useLayoutEffect, useRef, useCallback } from "react";
 import { FiMenu } from "react-icons/fi";
 import { gsap } from "gsap";
 import NavWord from "../components/Nav";
+import OverlayAnimation from "../components/OverlayAnimation";
 
   const NAV_LINKS = [
     { label: "PROJECT", href: "/projects" },
@@ -94,12 +95,8 @@ const Intro = () => {
       onWheel={handleWheel}
       className=" h-screen w-screen overflow-x-hidden overflow-y-hidden bg-forest-50 flex items-center justify-center"
     >
-          {/* Wipe overlay (ember) */}
-      <div
-        ref={wipeRef}
-        className="fixed inset-x-0 top-0 z-50 bg-ember-75"
-        style={{ height: "100%" }}
-      />
+
+      <OverlayAnimation wipeRef={wipeRef} className={`top-0 bg-ember-75`}/>
 
 
       {/* hamburger icon on md and smaller */}

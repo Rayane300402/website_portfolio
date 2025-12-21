@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import ContactProfileCard from "../components/ContactProfileCard";
+import OverlayAnimation from "../components/OverlayAnimation";
 
 const Contact = () => {
   const contactRef = useRef<HTMLDivElement | null>(null);
@@ -60,11 +61,7 @@ const Contact = () => {
       ref={contactRef}
       className="min-h-screen w-screen overflow-x-hidden bg-ember-75"
     >
-      <div
-        ref={wipeRef}
-        className="fixed inset-x-0 bottom-0 z-50 bg-forest-50"
-        style={{ height: "100%" }}
-      />
+     <OverlayAnimation wipeRef={wipeRef} className={`bottom-0 bg-forest-50`} />
 
       <section
         className="

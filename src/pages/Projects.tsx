@@ -3,6 +3,7 @@ import TopBar from "../components/TopBar";
 import CustomTextBox from "../components/CustomTextBox";
 import NavWord from "../components/Nav";
 import { gsap } from "gsap";
+import OverlayAnimation from "../components/OverlayAnimation";
 
 const PROJECT_LINKS = [
   { label: "Laced", href: "/design", isNew: false },
@@ -67,11 +68,7 @@ const Projects = () => {
       onWheel={handleWheel}
       ref={projectRef}
     >
-      <div
-        ref={wipeRef}
-        className="fixed inset-x-0 top-0 z-50 bg-forest-50"
-        style={{ height: "100%" }}
-      />
+       <OverlayAnimation wipeRef={wipeRef} className={`top-0 bg-forest-50`}/>
 
       <div className="shrink-0 px-16 pt-14">
         <TopBar className="mb-8" homeHref="/" />
