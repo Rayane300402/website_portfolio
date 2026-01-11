@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import TopBar from "../components/TopBar";
 import OverlayAnimation from "../components/OverlayAnimation";
 import { gsap } from "gsap/gsap-core";
+import AboutButtonts from "../components/AboutButtonts";
 
 const About = () => {
   const wipeRef = useRef<HTMLDivElement | null>(null);
@@ -47,9 +48,27 @@ const About = () => {
           -z-10"
         />
 
-        <div className="relative grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_600px] gap-10 items-start">
+        <div className="relative grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_350px] gap-10 items-start">
+          <div
+            className="
+      lg:hidden
+      pointer-events-none
+      absolute
+      right-0
+      top-24
+      opacity-80
+      w-[clamp(220px,35vw,520px)]
+    "
+          >
+            <img
+              src="/img/profile2.png"
+              alt=""
+              className="w-full h-auto object-contain"
+            />
+          </div>
+
           {/* Text section */}
-          <div className="min-w-0">
+          <div className="min-w-0 z-10">
             <h1 className=" glory-title text-[clamp(90px,5vw,100px)] leading-[0.85] mt-12">
               About
             </h1>
@@ -110,11 +129,62 @@ const About = () => {
 
             <div className="mt-14 space-y-6 font-segoe-ui font-light text-[22px] leading-relaxed">
               <p>
-                I abide by this quote every time I am hit with an obstacle, I get anxious and worry if i would ever figure it out. Usually after 2-5 minutes I bring out a sheet of paper and just write everything I have to do, split it if i can, make it look easier, prove that it's easier than it looks and/or sounds. I write and scribble and just cause a mess on this poor sheet of paper until i have a schedule in my mind, then i write it in my notebook in a clear way. I write it in my notes on my phone to not forget. I write in my slack chat, and I get to work.
+                I abide by this quote every time I am hit with an obstacle, I
+                get anxious and worry if i would ever figure it out. Usually
+                after 2-5 minutes I bring out a sheet of paper and just write
+                everything I have to do, split it if i can, make it look easier,
+                prove that it's easier than it looks and/or sounds. I write and
+                scribble and just cause a mess on this poor sheet of paper until
+                i have a schedule in my mind, then i write it in my notebook in
+                a clear way. I write it in my notes on my phone to not forget. I
+                write in my slack chat, and I get to work.
               </p>
-    
+            </div>
+
+            <div className=" font-segoe-ui font-extralight mt-14 text-[clamp(22px,2.5vw,34px)] leading-snug">
+              Experience
+            </div>
+
+            <div className="mt-8 space-y-6 font-segoe-ui font-light text-[22px] leading-relaxed">
+              <p>
+                • I graduated with a BSc. in Computer Science, with honors.{" "}
+                <br />
+                • For basics such as HTML, CSS and JavaScript I have almost 4
+                years of experience. <br />• As of 2026, I have 2,5 years worth
+                of experience in Angular. <br />
+                • 4 years for Flutter. <br />• Currently I have been working at
+                AIY for 2 years and a half now as Software Developer.
+              </p>
+            </div>
+
+            <div className=" font-segoe-ui font-extralight mt-14 text-[clamp(22px,2.5vw,34px)] leading-snug">
+              Skills
+            </div>
+
+            <div className="mt-8 space-y-6 font-segoe-ui font-light text-[22px] leading-relaxed">
+              <p>
+                UI/Ux Design on Figma / HTML and CSS / Angular / Electron /
+                Testing with Playwright / Flutter and Dart / SQLite / JavaScript
+                and TypedScript / Python / Firebase / Linux
+              </p>
             </div>
           </div>
+
+          {/* Image and Button section */}
+          <aside className=" ">
+            <div className="lg:sticky lg:top-24 flex flex-col items-end gap-8">
+              <img
+                src="/img/profile2.png"
+                alt=""
+                className="w-[clamp(320px,30vw,520px)] h-auto object-contain hidden lg:block"
+              />
+
+              {/* Buttons only on lg+ here */}
+              <div className="w-full flex flex-col gap-4">
+                <AboutButtonts />
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
     </main>
