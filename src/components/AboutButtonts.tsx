@@ -31,7 +31,6 @@ const AboutButtonts = () => {
         href="/contact"
         className="
         font-glory-migella
-          no-select
           rounded-full
           bg-forest-75
           text-forest-50

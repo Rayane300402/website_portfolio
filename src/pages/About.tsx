@@ -6,7 +6,10 @@ import AboutButtonts from "../components/AboutButtonts";
 
 const About = () => {
   const wipeRef = useRef<HTMLDivElement | null>(null);
+  const aboutTextRef = useRef<HTMLDivElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null);
+  const aboutImgLgRef = useRef<HTMLImageElement | null>(null);
+  const aboutImgBgRef = useRef<HTMLImageElement | null>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -21,6 +24,38 @@ const About = () => {
             duration: 0.9,
             ease: "power4.inOut",
           }
+        );
+      }
+
+      if (aboutTextRef.current) {
+        tl.from(
+          aboutTextRef.current,
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.25"
+        );
+      }
+
+      if (aboutImgLgRef.current) {
+        tl.fromTo(
+          aboutImgLgRef.current,
+          { scale: 0.92, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.2, ease: "power3.out" },
+          "-=0.35"
+        );
+      }
+
+      // optional: also animate the behind-text image on <lg
+      if (aboutImgBgRef.current) {
+        tl.fromTo(
+          aboutImgBgRef.current,
+          { scale: 0.92, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.2, ease: "power3.out" },
+          "-=0.55"
         );
       }
     }, aboutRef);
@@ -51,16 +86,16 @@ const About = () => {
         <div className="relative grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_350px] gap-10 items-start">
           <div
             className="
-      lg:hidden
-      pointer-events-none
-      absolute
-      right-0
-      top-24
-      opacity-80
-      w-[clamp(220px,35vw,520px)]
-    "
+            lg:hidden
+            pointer-events-none
+            absolute
+            right-0
+            top-24
+            opacity-80
+            w-[clamp(220px,35vw,520px)]"
           >
             <img
+            ref={aboutImgBgRef}
               src="/img/profile2.png"
               alt=""
               className="w-full h-auto object-contain"
@@ -69,7 +104,10 @@ const About = () => {
 
           {/* Text section */}
           <div className="min-w-0 z-10">
-            <h1 className=" glory-title text-[clamp(90px,5vw,100px)] leading-[0.85] mt-12">
+            <h1
+              ref={aboutTextRef}
+              className=" font-glory-migella text-[clamp(100px,10vw,230px)] leading-[0.85] mt-12"
+            >
               About
             </h1>
 
@@ -174,6 +212,7 @@ const About = () => {
           <aside className=" ">
             <div className="lg:sticky lg:top-24 flex flex-col items-end gap-8">
               <img
+              ref={aboutImgLgRef}
                 src="/img/profile2.png"
                 alt=""
                 className="w-[clamp(320px,30vw,520px)] h-auto object-contain hidden lg:block"
