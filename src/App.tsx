@@ -5,6 +5,7 @@ import Contact from './pages/Contact'
 import Design from './pages/Design'
 import Intro from './pages/Intro'
 import Projects from './pages/Projects'
+import CaseStudyPage from './pages/CaseStudyPage';
 
 function App() {
 
@@ -16,10 +17,8 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/design" element={<Design />} />
         <Route path="/contact" element={<Contact />} />
-         {/* <Route path="/salemtek" element={<Salemtek />} /> */}
-         {/* <Route path="/avoo" element={<AVOO />} /> */}
-         {/* <Route path="/series-scribe" element={<SeriesScribe />} /> */}
-         {/* <Route path="/orderly-flow" element={<OrderlyFlow />} /> */}
+        <Route path="/projects/:slug" element={<CaseStudyPage />} />
+        <Route path="/design/:slug" element={<CaseStudyPage />} />
       </Routes>
     </Router>
   )

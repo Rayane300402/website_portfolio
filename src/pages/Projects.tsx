@@ -10,7 +10,7 @@ const PROJECT_LINKS = [
   { label: "Zentry", href: "/projects", isNew: true },
   { label: "OrderlyFlow", href: "/contact", isNew: false },
   { label: "ShareCare", href: "/contact", isNew: false },
-  { label: "TSB2.0", href: "#about", isNew: false },
+  { label: "TSB2.0", href: "/projects/tsb-2", isNew: false },
   { label: "VirtuEscape", href: "/contact", isNew: false },
 ];
 
