@@ -11,8 +11,6 @@ const CaseStudyPage = () => {
   const { slug } = useParams();
   const wipeRef = useRef<HTMLDivElement | null>(null);
   const caseStudyRef = useRef<HTMLDivElement | null>(null);
-  // const bandRef = useRef<HTMLDivElement | null>(null);
-  // const titleRef = useRef<HTMLDivElement | null>(null);
 
   const heroRef = useRef<HeroTitleBandRefs | null>(null);
 
@@ -100,46 +98,17 @@ const CaseStudyPage = () => {
       </div>
 
       <section className="px-6  md:pl-0 pr-6 sm:px-10 md:pr-12 lg:pr-16 pb-16">
-        {/* <div
-          ref={bandRef}
-          className="
-      relative
-      bg-ember-75
-      w-full
-      h-[600px]
-      rounded-[10px]
-      md:rounded-tr-[10px] md:rounded-br-[10px]
-      md:rounded-tl-none md:rounded-bl-none
-      pr-6 lg:pr-16
-      pb-8 sm:pb-10
-    "
-        >
-          <h1
-            ref={titleRef}
-            className="
-            absolute
-    inset-0
-    flex
-    items-center
-    justify-center
-    font-glory-migella
-    text-white
-    leading-none
-    text-center
-    text-[clamp(128px,16vw,320px)]
-
-    md:inset-auto
-    md:right-20
-    md:bottom-10
-    md:text-right
-    md:block
-      "
-          >
-            {caseStudy.header.title}
-          </h1>
-        </div> */}
-
         <HeroTitleBand ref={heroRef} title={caseStudy.header.title} />
+
+        {/* description */}
+
+        <div className="py-24">
+          <p
+            className=" text-[clamp(30px,5.5vw,50px)] leading-tight text-center max-w-[900px] mx-auto"
+          >
+            {caseStudy.header.shortDescription}
+          </p>
+        </div>
       </section>
     </main>
   );

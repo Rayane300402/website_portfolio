@@ -7,7 +7,7 @@ export const CASE_STUDIES: CaseStudy[] =
       header: {
         kind: "project",
         title: "TSB 2.0",
-        shortDescription: "A shoe botting app co-built in Angular for AIY.",
+        shortDescription: "A shoe botting, now all in one botting app I co-built in Angular for AIY.",
         work: ["UI/UX", "Front End Developer", "Angular and SQLite"],
         responsibilities:
           "Minor fixes in Figma design, product development using Angular & Electron, database via SQLite.",
