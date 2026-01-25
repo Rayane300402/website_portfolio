@@ -3,6 +3,7 @@
 export type PageKind = "project" | "design" | "both";
 
 export type ExternalLink = {
+  img?:string;
   label: string;
   href: string;
 };
@@ -17,8 +18,8 @@ export type HeaderInfo = {
 };
 
 export type ActionButtons = {
-  primary: { label: string; href: string; external?: boolean };
-  secondary: { label: string; href: string; external?: boolean };
+  primary: { label: string; href: string; external?: boolean, img?:string };
+  secondary?: { label: string; href: string; external?: boolean, img?:string };
 };
 
 // ---------- Media assets ----------
