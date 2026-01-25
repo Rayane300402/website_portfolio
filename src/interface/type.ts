@@ -8,12 +8,12 @@ export type ExternalLink = {
 };
 
 export type HeaderInfo = {
-  kind: PageKind;           
-  title: string;             
-  shortDescription: string; 
-  work?: string[]; 
+  kind: PageKind;
+  title: string;
+  shortDescription: string;
+  work?: string[];
   responsibilities?: string;
-  links?: ExternalLink[]; 
+  links?: ExternalLink[];
 };
 
 export type ActionButtons = {
@@ -30,7 +30,10 @@ export type MediaAsset = {
   alt?: string;
   poster?: string;        // for video
   caption?: string;
-  className?: string;     // per-asset positioning override (your "each page different" need)
+  side?: "left" | "right";
+  x?: number,
+  w?: number,
+  y?: number
 };
 
 // ---------- Repeating Section ----------
@@ -49,7 +52,7 @@ export type TextBlock = BlockBase & {
 export type MediaBlock = BlockBase & {
   type: "media";
   variant?: "single" | "double" | "grid";
-  assets: MediaAsset[];     // 1–2 commonly, but supports more
+  asset: MediaAsset;     // 1–2 commonly, but supports more
 };
 
 export type HeroMockupBlock = BlockBase & {
@@ -76,7 +79,7 @@ export type CaseStudyBlock =
 export type CaseStudy = {
   slug: string;              // route key
   header: HeaderInfo;
-  introAssets?: MediaAsset[]; // "at least 1 image, rare chance for 2"
+  introAssets?: MediaAsset; // "at least 1 image, rare chance for 2"
   blocks: CaseStudyBlock[];
   actions?: ActionButtons;   // optional two buttons at the end
 };
