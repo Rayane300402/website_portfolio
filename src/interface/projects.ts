@@ -177,7 +177,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         "Co-created design with classmate, split the work evenly and developed it with HTML, CSS and JavaScript for a course project",
       links: [
         {
-          label: "https://virtue-escape.netlify.app/",
+          label: "VirtuEscape",
           href: "https://virtue-escape.netlify.app/",
         },
       ],
@@ -185,7 +185,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
     introAssets: {
       type: "image",
-      src: "/img/Laced/laced.png",
+      src: "/img/VE/veIntro.png",
       alt: "VirtuEscape hero",
     },
 
@@ -197,31 +197,29 @@ export const CASE_STUDIES: CaseStudy[] = [
         assets: [
           {
             type: "image",
-            src: "/img/TSB/tsb-laptop-1.png",
+            src: "/img/VE/ve-laptop-1.png",
             side: "left",
             x: 100,
-            w: 540,
             y: -185,
           },
           {
             type: "image",
-            src: "/img/TSB/tsb-laptop-2.png",
+            src: "/img/VE/ve-laptop-2.png",
             side: "right",
-            x: -140,
-            w: 540,
-            y: 150,
+            x: -130,
+            y: 130,
           },
+
         ],
       },
 
-      // gallery-1 + gallery-2 were back-to-back -> merged
       {
         id: "gallery",
         type: "media",
-        variant: "grid",
+        variant: "double",
         assets: [
-          { type: "image", src: "/img/TSB/tsb.png", alt: "VirtuEscape shot 1" },
-          { type: "image", src: "/img/TSB/tsb.png", alt: "VirtuEscape shot 2" },
+          { type: "image", src: "/img/VE/ve2.png", alt: "VirtuEscape shot 1" },
+          { type: "image", src: "/img/VE/ve3.png", alt: "VirtuEscape shot 2" },
         ],
       },
 
@@ -254,23 +252,23 @@ export const CASE_STUDIES: CaseStudy[] = [
 
   // ---------------- ShareCare ----------------
   {
-    slug: "ShareCare",
+    slug: "sharecare",
     header: {
       kind: "project",
-      title: "VirtuEscape",
+      title: "ShareCare",
       shortDescription:
         "A remake of a website co-worked on for the GDSC solution challenge to combat food waste  ",
       work: ["UI/UX", "Front End Developer", "Angular and Bootstrap"],
       responsibilities:
         "re-edited design and remade it using Angular and Bootstrap as a challenge.",
       links: [
-        { label: "https://sharecare.netlify.app/", href: "https://sharecare.netlify.app/" },
+        { label: "ShareCare", href: "https://sharecare.netlify.app/" },
       ],
     },
 
     introAssets: {
       type: "image",
-      src: "/img/Laced/laced.png",
+      src: "/img/SC/sharecareIntro.png",
       alt: "ShareCare hero",
     },
 
@@ -282,19 +280,17 @@ export const CASE_STUDIES: CaseStudy[] = [
         assets: [
           {
             type: "image",
-            src: "/img/TSB/tsb-laptop-1.png",
+            src: "/img/SC/sharecare-laptop-1.png",
             side: "left",
-            x: -100,
-            w: 540,
-            y: 185,
+            x: 80,
+            y: 100,
           },
           {
             type: "image",
-            src: "/img/TSB/tsb-laptop-2.png",
+            src: "/img/SC/sharecare-laptop-2.png",
             side: "right",
-            x: 140,
-            w: 540,
-            y: -150,
+            x: 0,
+            y: -90,
           },
         ],
       },
@@ -304,14 +300,14 @@ export const CASE_STUDIES: CaseStudy[] = [
         type: "text",
         variant: "body",
         text:
-          "VirtuEscape was my first full blown HTML, CSS and Javascript website, the first project I was tasked to do at my University. It was built when the pandemic was at it’s highest and our university schedule was  more on the online than the face to face. The goal here was for people to travel from the comfort of their bed,  to see the world on their phone. It was a very simple idea, a good start to many many projects.",
+          "ShareCare began as a collaborative web project built in 2022 using React and Tailwind CSS for the Google Solution Challenge. The goal was to design a practical solution to reduce food waste by connecting donors with individuals and organizations in need, while keeping accessibility and ease of use at the core of the experience.",
       },
 
       {
         id: "gallery-1",
         type: "media",
         variant: "single",
-        assets: [{ type: "image", src: "/img/TSB/tsb.png", alt: "ShareCare shot 1" }],
+        assets: [{ type: "image", src: "/img/SC/sharecareDesign.png", alt: "ShareCare shot 1" }],
       },
 
       {
@@ -319,14 +315,14 @@ export const CASE_STUDIES: CaseStudy[] = [
         type: "text",
         variant: "body",
         text:
-          "VirtuEscape was my first full blown HTML, CSS and Javascript website, the first project I was tasked to do at my University. It was built when the pandemic was at it’s highest and our university schedule was  more on the online than the face to face. The goal here was for people to travel from the comfort of their bed,  to see the world on their phone. It was a very simple idea, a good start to many many projects.",
+          "After the initial release, I revisited ShareCare to redesign key flows in Figma and fully rewrite the application using Angular and Bootstrap. This revamp allowed me to reinforce my proficiency with Bootstrap’s layout system while improving structure, consistency, and scalability across the UI. The rewrite focused on cleaner component separation, clearer user journeys, and improved responsiveness across devices.",
       },
-
+      // TODO: CHANGE TO VIDEO
       {
         id: "gallery-2",
         type: "media",
         variant: "single",
-        assets: [{ type: "video", src: "/img/TSB/tsb.png", alt: "ShareCare video" }],
+        assets: [{ type: "image", src: "/img/SC/sharecareIntro.png", alt: "ShareCare video" }],
       },
 
       {
@@ -334,7 +330,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         type: "text",
         variant: "body",
         text:
-          "This website was also my first to upload online using netlify. Your free ticket around the world. From the comfort of your bed!",
+          "ShareCare was developed as a solution-oriented platform addressing food redistribution and sustainability. The project ranked Top 30 in the MENA region during the Google Solution Challenge, validating both the concept and its execution as a real-world social impact tool.",
       },
     ],
 

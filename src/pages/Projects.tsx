@@ -8,10 +8,9 @@ import OverlayAnimation from "../components/OverlayAnimation";
 const PROJECT_LINKS = [
   { label: "Laced", href: "/projects/laced", isNew: false },
   { label: "Zentry", href: "/projects", isNew: true },
-  { label: "OrderlyFlow", href: "/contact", isNew: false },
-  { label: "ShareCare", href: "/contact", isNew: false },
+  { label: "ShareCare", href: "/projects/sharecare", isNew: false },
   { label: "TSB2.0", href: "/projects/tsb-2", isNew: false },
-  { label: "VirtuEscape", href: "/contact", isNew: false },
+  { label: "VirtuEscape", href: "/projects/virtuescape", isNew: false },
 ];
 
 const Projects = () => {
@@ -71,7 +70,7 @@ const Projects = () => {
        <OverlayAnimation wipeRef={wipeRef} className={`top-0 bg-forest-50`}/>
 
       <div className="shrink-0 px-16 pt-14">
-        <TopBar className="mb-8" homeHref="/" />
+        <TopBar className="mb-8" />
       </div>
 
       <section className="flex-1 min-h-0 w-full grid grid-cols-1 md:grid-cols-2 gap-10 px-6 sm:px-10 md:px-12 lg:px-16 pb-12">

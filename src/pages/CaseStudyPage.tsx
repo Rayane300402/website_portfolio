@@ -155,11 +155,10 @@ const CaseStudyPage = () => {
         }
 
         // DOUBLE
-        if (b.variant === "double") {
           return (
             <div
               key={b.id}
-              className="case-study-img grid gap-6 md:grid-cols-2"
+              className="case-study-img flex flex-col gap-6 md:grid-cols-2"
             >
               {b.assets.slice(0, 2).map((a: any, i: number) => (
                 <div key={i}>
@@ -185,38 +184,9 @@ const CaseStudyPage = () => {
               ))}
             </div>
           );
-        }
+        
 
-        // GRID (any number)
-        return (
-          <div
-            key={b.id}
-            className="case-study-img grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {b.assets.map((a: any, i: number) => (
-              <div key={i}>
-                {a.type === "image" ? (
-                  <img
-                    src={a.src}
-                    alt={a.alt ?? ""}
-                    className="w-full h-auto"
-                  />
-                ) : (
-                  <video
-                    className="w-full h-auto"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    poster={a.poster}
-                  >
-                    <source src={a.src} />
-                  </video>
-                )}
-              </div>
-            ))}
-          </div>
-        );
+   
       }
 
       case "text": {

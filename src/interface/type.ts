@@ -52,7 +52,7 @@ export type TextBlock = BlockBase & {
 
 export type MediaBlock = BlockBase & {
   type: "media";
-  variant?: "single" | "double" | "grid";
+  variant?: "single" | "double";
   assets: MediaAsset[];     // 1–2 commonly, but supports more
 };
 
