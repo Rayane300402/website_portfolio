@@ -27,13 +27,13 @@ const TopBar = ({
       </Link>) :
         isDesign ?
       (<Link
-        to="/projects"
+        to="/design"
         className="text-white  tracking-[0.18em] cursor-pointer font-segoe-ui font-light text-[18px]"
       >
         DESIGN
       </Link>) :
       (<Link
-        to="/design"
+        to="/projects"
         className="text-white  tracking-[0.18em] cursor-pointer font-segoe-ui font-light text-[18px]"
       >
         PROJECT
