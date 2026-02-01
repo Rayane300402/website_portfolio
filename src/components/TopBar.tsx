@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 
 type TopBarProps = {
   className?: string;
+  isHome?: boolean;
+  isDesign?: boolean;
 };
 
 const TopBar = ({
-
   className = "",
+  isHome = true,
+  isDesign = false
 }: TopBarProps) => {
   return (
     <div className={`w-full flex items-center ${className}`}>
@@ -16,12 +19,26 @@ const TopBar = ({
 
       <div className="w-40 mx-6 h-px bg-white/50 hidden md:block"></div>
 
-      <Link
+      {isHome ? (<Link
         to="/"
         className="text-white  tracking-[0.18em] cursor-pointer font-segoe-ui font-light text-[18px]"
       >
         HOME
-      </Link>
+      </Link>) :
+        isDesign ?
+      (<Link
+        to="/projects"
+        className="text-white  tracking-[0.18em] cursor-pointer font-segoe-ui font-light text-[18px]"
+      >
+        DESIGN
+      </Link>) :
+      (<Link
+        to="/design"
+        className="text-white  tracking-[0.18em] cursor-pointer font-segoe-ui font-light text-[18px]"
+      >
+        PROJECT
+      </Link>)
+      }
 
       <div className="w-40 mx-6 h-px bg-white/50 md:hidden"></div>
     </div>
