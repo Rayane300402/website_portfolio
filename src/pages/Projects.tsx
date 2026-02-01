@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import OverlayAnimation from "../components/OverlayAnimation";
 
 const PROJECT_LINKS = [
-  { label: "Laced", href: "/design", isNew: false },
+  { label: "Laced", href: "/projects/laced", isNew: false },
   { label: "Zentry", href: "/projects", isNew: true },
   { label: "OrderlyFlow", href: "/contact", isNew: false },
   { label: "ShareCare", href: "/contact", isNew: false },

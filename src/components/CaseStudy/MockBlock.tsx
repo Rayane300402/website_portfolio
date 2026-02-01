@@ -21,31 +21,29 @@ export default function HeroMockupBlock({
   const mockupRefs = useRef<HTMLImageElement[]>([]);
 
   useLayoutEffect(() => {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const els = mockupRefs.current.filter(Boolean);
-  if (!els.length) return;
+    const els = mockupRefs.current.filter(Boolean);
+    if (!els.length) return;
 
-  const ctx = gsap.context(() => {
-    // prevent stacked animations (StrictMode / rerenders)
-    gsap.killTweensOf(els);
+    const ctx = gsap.context(() => {
+      // prevent stacked animations (StrictMode / rerenders)
+      gsap.killTweensOf(els);
 
-    // reset any prior gsap transforms on y to avoid drift
-    gsap.set(els, { yPercent: 0 });
+      // reset any prior gsap transforms on y to avoid drift
+      gsap.set(els, { yPercent: 0 });
 
-    const tl = gsap.timeline({ repeat: -1, yoyo: true });
+      const tl = gsap.timeline({ repeat: -1, yoyo: true });
 
-    // same speed for both; slight phase offset (0.4s) so not perfectly in sync
-    tl.to(els[0], { yPercent: -2, duration: 4.5, ease: "sine.inOut" }, 0);
-    if (els[1]) {
-      tl.to(els[1], { yPercent: -2, duration: 4.5, ease: "sine.inOut" }, 0.5);
-    }
-  });
+      // same speed for both; slight phase offset (0.4s) so not perfectly in sync
+      tl.to(els[0], { yPercent: -2, duration: 4.5, ease: "sine.inOut" }, 0);
+      if (els[1]) {
+        tl.to(els[1], { yPercent: -2, duration: 4.5, ease: "sine.inOut" }, 0.5);
+      }
+    });
 
-  return () => ctx.revert();
-}, []);
-
-
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section className="">
@@ -70,6 +68,7 @@ export default function HeroMockupBlock({
 
           {/* mockups */}
           {assets.map((a, idx) => {
+            const isPhone = a.src.toLowerCase().includes("phone");
             const isLeft = a.side === "left";
             const isRight = a.side === "right";
 
@@ -83,39 +82,39 @@ export default function HeroMockupBlock({
             //    - lg+: right side normal
             const posClass = isLeft
               ? "left-[6%] bottom-0"
-              : "right-3 bottom-3 lg:right-[6%] lg:bottom-0"; // <-- HARD bottom-right on sm/md
+              : isPhone ? "-right-15 bottom-20 lg:right-[6%] lg:bottom-0" : "right-3 bottom-3 lg:right-[6%] lg:bottom-0"; 
 
             // 3) sizing:
             // - RIGHT: smaller on sm/md, bigger on lg
             // - LEFT: only lg anyway
             const widthClass = isLeft
-              ? "w-[520px]"
-              : "w-[140px] sm:w-[170px] md:w-[220px] lg:w-[520px]"; // <-- small on mobile
-
-            // IMPORTANT: kill x/y transforms on sm/md for the RIGHT laptop
-            // so nothing can pull it away from bottom-right.
-            const x = a.x ?? 0;
-            const y = a.y ?? 0;
-            const transform = isRight
-              ? "translate(0px, 0px)" // default for mobile; overridden by lg below
-              : `translate(${x}px, ${y}px)`;
+              ? isPhone
+                ? "w-[600px]" // larger phone on lg+
+                : "w-[520px]"
+              : isPhone
+                ? "w-[180px] sm:w-[220px] md:w-[260px] lg:w-[600px]" // bigger than laptops
+                : "w-[140px] sm:w-[170px] md:w-[220px] lg:w-[520px]";
 
             return (
               <img
-              ref={(el) => {
-                if(!el) return;
-                mockupRefs.current[idx] = el;
-              }}
+                ref={(el) => {
+                  if (!el) return;
+                  mockupRefs.current[idx] = el;
+                }}
                 key={idx}
                 src={a.src}
                 alt={a.alt ?? ""}
                 className={`
-        absolute ${visibility} ${posClass} ${widthClass}
-        select-none
-        drop-shadow-[0_24px_40px_rgba(0,0,0,0.45)]
-      `}
+    absolute ${visibility} ${posClass} ${widthClass}
+    select-none
+    drop-shadow-[0_24px_40px_rgba(0,0,0,0.45)]
+
+    ${isLeft ? "translate-x-(--tx) translate-y-(--ty)" : ""}
+    ${isRight ? "lg:translate-x-(--tx) lg:translate-y-(--ty)" : ""}
+  `}
                 style={{
-                  transform,
+                  ["--tx" as any]: `${a.x ?? 0}px`,
+                  ["--ty" as any]: `${a.y ?? 0}px`,
                   zIndex: a.z ?? 10,
                   maxWidth: "70%",
                 }}

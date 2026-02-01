@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CASE_STUDIES } from "../interface/projects";
 import TopBar from "../components/TopBar";
 import { Navigate, useParams } from "react-router-dom";
@@ -8,6 +9,7 @@ import type { HeroTitleBandRefs } from "../components/CaseStudy/Title";
 import HeroTitleBand from "../components/CaseStudy/Title";
 import CaseStudyGrid from "../components/CaseStudy/Grid";
 import HeroMockupBlock from "../components/CaseStudy/MockBlock";
+import CaseStudyActions from "../components/CaseStudy/ActionButtons";
 
 const CaseStudyPage = () => {
   const { slug } = useParams();
@@ -35,15 +37,21 @@ const CaseStudyPage = () => {
     {
       label: "URL",
       lines: (caseStudy?.header.links ?? []).map((l) => (
-        <a
-          key={l.href}
-          href={l.href}
-          target="_blank"
-          rel="noreferrer"
-          className="underline underline-offset-4 break-words whitespace-normal"
-        >
-          {l.href}
-        </a>
+        <div className="flex flex-row gap-2">
+          {l.img && (
+            <img src={l.img} alt={l.label} className="w-6 object-contain" />
+          )}
+
+          <a
+            key={l.href}
+            href={l.href}
+            target="_blank"
+            rel="noreferrer"
+            className="underline underline-offset-4 wrap-break-word whitespace-normal"
+          >
+            {l.label}
+          </a>
+        </div>
       )),
     },
   ];
@@ -113,6 +121,131 @@ const CaseStudyPage = () => {
     return () => ctx.revert();
   }, []);
 
+  const renderBlock = (b: any) => {
+    switch (b.type) {
+      case "hero-mockup":
+        return (
+          <HeroMockupBlock key={b.id} bgText={b.bgText} assets={b.assets} />
+        );
+
+      case "media": {
+        if (!b.assets || b.assets.length === 0) return null;
+
+        // SINGLE
+        if (b.variant === "single" || b.assets.length === 1) {
+          const a = b.assets[0];
+          return (
+            <div key={b.id} className="case-study-img">
+              {a.type === "image" ? (
+                <img src={a.src} alt={a.alt ?? ""} className="w-full h-auto" />
+              ) : (
+                <video
+                  className="w-full h-auto"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  poster={a.poster}
+                >
+                  <source src={a.src} />
+                </video>
+              )}
+            </div>
+          );
+        }
+
+        // DOUBLE
+        if (b.variant === "double") {
+          return (
+            <div
+              key={b.id}
+              className="case-study-img grid gap-6 md:grid-cols-2"
+            >
+              {b.assets.slice(0, 2).map((a: any, i: number) => (
+                <div key={i}>
+                  {a.type === "image" ? (
+                    <img
+                      src={a.src}
+                      alt={a.alt ?? ""}
+                      className="w-full h-auto"
+                    />
+                  ) : (
+                    <video
+                      className="w-full h-auto"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      poster={a.poster}
+                    >
+                      <source src={a.src} />
+                    </video>
+                  )}
+                </div>
+              ))}
+            </div>
+          );
+        }
+
+        // GRID (any number)
+        return (
+          <div
+            key={b.id}
+            className="case-study-img grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {b.assets.map((a: any, i: number) => (
+              <div key={i}>
+                {a.type === "image" ? (
+                  <img
+                    src={a.src}
+                    alt={a.alt ?? ""}
+                    className="w-full h-auto"
+                  />
+                ) : (
+                  <video
+                    className="w-full h-auto"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    poster={a.poster}
+                  >
+                    <source src={a.src} />
+                  </video>
+                )}
+              </div>
+            ))}
+          </div>
+        );
+      }
+
+      case "text": {
+        const paragraphs = Array.isArray(b.text) ? b.text : [b.text];
+        const isFinal = b.id.includes("final");
+
+        return (
+          <div key={b.id} className="py-24">
+            {paragraphs.map((t: string, i: number) => (
+              <p
+                key={i}
+                className={
+                  isFinal
+                    ? "text-[clamp(30px,5.5vw,50px)] leading-tight text-center max-w-5xl mx-auto"
+                    : "text-xl text-center max-w-5xl mx-auto"
+                }
+              >
+                {t}
+              </p>
+            ))}
+          </div>
+        );
+      }
+
+      default:
+        return null;
+    }
+  };
+
   if (!caseStudy) return <Navigate to="/projects" replace />;
 
   return (
@@ -123,7 +256,7 @@ const CaseStudyPage = () => {
       <OverlayAnimation wipeRef={wipeRef} className={`top-0 bg-ember-75`} />
 
       <div className="shrink-0 px-16 pt-14">
-        <TopBar className="mb-8" homeHref="/" />
+        <TopBar className="mb-8" isHome={false} />
       </div>
 
       <section className="px-6  pr-6 sm:px-10 md:pr-12 lg:pr-16 pb-16">
@@ -156,51 +289,12 @@ const CaseStudyPage = () => {
           />
         </div>
 
-        {caseStudy.blocks.map((b) => {
-          if (b.type === "hero-mockup") {
-            return (
-              <HeroMockupBlock key={b.id} bgText={b.bgText} assets={b.assets} />
-            );
-          }
-          return null;
-        })}
+        {/* blocks */}
+        {caseStudy.blocks.map(renderBlock)}
 
-        {caseStudy.blocks.map((b) => {
-          if (b.id === "gallery-1") {
-            return (
-              <div className="case-study-img">
-                <img src={b.asset.src} alt="" className="w-full h-auto" />
-              </div>
-            );
-          }
-          return null;
-        })}
+        {/* actions */}
 
-        {caseStudy.blocks.map((b) => {
-          if (b.id === "note-2") {
-            return (
-              <div className="py-24">
-                <p className=" text-xl text-center max-w-5xl mx-auto">
-                  {b.text}
-                </p>
-              </div>
-            );
-          }
-          return null;
-        })}
-
-        {caseStudy.blocks.map((b) => {
-          if (b.id === "final-note") {
-            return (
-              <div className="py-24">
-                <p className="  text-[clamp(30px,5.5vw,50px)] leading-tight text-center  max-w-5xl mx-auto">
-                  {b.text}
-                </p>
-              </div>
-            );
-          }
-          return null;
-        })}
+        {caseStudy.actions && <CaseStudyActions actions={caseStudy.actions} />}
       </section>
     </main>
   );
