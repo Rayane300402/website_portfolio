@@ -10,6 +10,7 @@ import HeroTitleBand from "../components/CaseStudy/Title";
 import CaseStudyGrid from "../components/CaseStudy/Grid";
 import HeroMockupBlock from "../components/CaseStudy/MockBlock";
 import CaseStudyActions from "../components/CaseStudy/ActionButtons";
+import { CASE_STUDIES_DESIGN } from "../interface/designs";
 
 const CaseStudyPage = () => {
   const { slug } = useParams();
@@ -19,7 +20,9 @@ const CaseStudyPage = () => {
   const heroRef = useRef<HeroTitleBandRefs | null>(null);
 
   const caseStudy = useMemo(
-    () => CASE_STUDIES.find((c) => c.slug === slug),
+    () =>
+      CASE_STUDIES.find((c) => c.slug === slug) ||
+      CASE_STUDIES_DESIGN.find((c) => c.slug === slug),
     [slug],
   );
 
@@ -154,39 +157,33 @@ const CaseStudyPage = () => {
           );
         }
 
-        // DOUBLE
-          return (
-            <div
-              key={b.id}
-              className="case-study-img flex flex-col gap-6 md:grid-cols-2"
-            >
-              {b.assets.slice(0, 2).map((a: any, i: number) => (
-                <div key={i}>
-                  {a.type === "image" ? (
-                    <img
-                      src={a.src}
-                      alt={a.alt ?? ""}
-                      className="w-full h-auto"
-                    />
-                  ) : (
-                    <video
-                      className="w-full h-auto"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      poster={a.poster}
-                    >
-                      <source src={a.src} />
-                    </video>
-                  )}
-                </div>
-              ))}
-            </div>
-          );
-        
-
-   
+        // DOUBLE = 2+ (STACKED COLUMN)
+        return (
+          <div key={b.id} className="case-study-img flex flex-col gap-6">
+            {b.assets.map((a: any, i: number) => (
+              <div key={i}>
+                {a.type === "image" ? (
+                  <img
+                    src={a.src}
+                    alt={a.alt ?? ""}
+                    className="w-full h-auto"
+                  />
+                ) : (
+                  <video
+                    className="w-full h-auto"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    poster={a.poster}
+                  >
+                    <source src={a.src} />
+                  </video>
+                )}
+              </div>
+            ))}
+          </div>
+        );
       }
 
       case "text": {
@@ -226,7 +223,11 @@ const CaseStudyPage = () => {
       <OverlayAnimation wipeRef={wipeRef} className={`top-0 bg-ember-75`} />
 
       <div className="shrink-0 px-16 pt-14">
-        <TopBar className="mb-8" isHome={false} />
+        <TopBar
+          className="mb-8"
+          isHome={false}
+          isDesign={caseStudy.header.kind == "design" ? true : false}
+        />
       </div>
 
       <section className="px-6  pr-6 sm:px-10 md:pr-12 lg:pr-16 pb-16">

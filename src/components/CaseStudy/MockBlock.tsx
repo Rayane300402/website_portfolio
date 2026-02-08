@@ -50,19 +50,21 @@ export default function HeroMockupBlock({
       <div className="relative mx-auto w-full max-w-[1600px] px-6">
         {/* stage */}
         <div className="relative overflow-hidden rounded-3xl bg-forest-50/0 min-h-[260px] md:min-h-[620px] lg:min-h-[720px]">
-          {/* background text */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div
-              className="
-      text-white font-extrabold uppercase leading-[0.9]
-      tracking-tight opacity-90 text-center
-      drop-shadow-[0_18px_28px_rgba(0,0,0,0.35)]
-      whitespace-normal wrap-break-words
-      max-w-[900px] w-full px-6 font-montserrat
-      text-[clamp(72px,10vw,170px)]
-    "
-            >
-              {bgText}
+            {/* background text */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div
+                className="
+                  text-white font-extrabold uppercase leading-[0.9]
+                  tracking-tight opacity-90 text-center
+                  drop-shadow-[0_18px_28px_rgba(0,0,0,0.35)]
+                  whitespace-normal wrap-break-words
+                  max-w-[900px] w-full px-6 font-montserrat
+                  text-[clamp(72px,10vw,170px)]
+                "
+              >
+                {bgText}
+              </div>
             </div>
           </div>
 
@@ -82,7 +84,7 @@ export default function HeroMockupBlock({
             //    - lg+: right side normal
             const posClass = isLeft
               ? "left-[6%] bottom-0"
-              : isPhone ? "-right-15 bottom-20 lg:right-[6%] lg:bottom-0" : "right-3 bottom-3 lg:right-[6%] lg:bottom-0"; 
+              : isPhone ? " bottom-20 lg:right-[6%] lg:bottom-0" : "right-3 bottom-3 lg:right-[6%] lg:bottom-0"; 
 
             // 3) sizing:
             // - RIGHT: smaller on sm/md, bigger on lg
@@ -90,7 +92,7 @@ export default function HeroMockupBlock({
             const widthClass = isLeft
               ? isPhone
                 ? "w-[600px]" // larger phone on lg+
-                : "w-[520px]"
+                : "w-[550px]"
               : isPhone
                 ? "w-[180px] sm:w-[220px] md:w-[260px] lg:w-[600px]" // bigger than laptops
                 : "w-[140px] sm:w-[170px] md:w-[220px] lg:w-[520px]";

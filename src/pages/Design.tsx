@@ -6,10 +6,10 @@ import OverlayAnimation from "../components/OverlayAnimation";
 import { gsap } from "gsap/gsap-core";
 
 const DESIGN_LINKS = [
-  { label: "Salemtek", href: "/projects", isNew: true },
-  { label: "A.V.O.O", href: "/design", isNew: false },
-  { label: "SeriesScribe", href: "#about", isNew: false },
-  { label: "OrderlyFlow", href: "/contact", isNew: false },
+  { label: "Salemtek", href: "/design/salemtek", isNew: true },
+  { label: "A.V.O.O", href: "/design/avoo", isNew: false },
+  { label: "SeriesScribe", href: "/design/seriesscribe", isNew: false },
+  { label: "OrderlyFlow", href: "/design/orderlyflow", isNew: false },
 ];
 
 const Design = () => {
