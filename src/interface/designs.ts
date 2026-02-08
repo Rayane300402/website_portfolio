@@ -93,57 +93,64 @@ export const CASE_STUDIES_DESIGN: CaseStudy[] = [
 
     // ---------------- AVOO ----------------
     {
-        slug: "laced",
+        slug: "avoo",
         header: {
-            kind: "project",
-            title: "Laced",
+            kind: "design",
+            title: "AVOO",
             shortDescription:
-                "A cross-platform mobile application built using Flutter. The ultimate tool for sneakerheads & resellers ",
+                "A financial-wellness mobile app concept focused on accessible budgeting and habit-building, created as the capstone project for the Google UX Design Professional Certificate.",
+
             work: [
-                "UI/UX",
-                "Front End Developer",
-                "Flutter, Dart and SQLite",
-                "Backend Developer",
-                "Nodejs and Express",
+                "UX Research",
+                "Product Design",
+                "Figma",
+                "Interaction Design"
             ],
+
             responsibilities:
-                "Created first UI/UX draft on Figma, consultation on new UI created by designer, Flutter front-end setup, SQLite set up and working on existing server and backend code.",
+                "End-to-end UX ownership: research, personas, journey mapping, wireframing, accessibility validation, and high-fidelity prototyping.",
+
             links: [
                 {
-                    label: "link for Android", href: "https://play.google.com/store/apps/details?id=com.aiy.laced",
-                    img: "/img/google.png"
+                    label: "View Figma Prototype",
+                    href: "https://www.figma.com/design/29NXlTWKs1hQkuIfvnFhia/UX-Course?node-id=4-2&t=itVUmwmUpuW1iaF2-1",
+                    img: "/img/figma.png"
                 },
-                { label: "link for iOS", href: "https://apps.apple.com/us/app/laced-snkr-drops/id6741904336", img: "/img/apple.png" },
+                {
+                    label: "View Research Slides",
+                    href: "https://docs.google.com/presentation/d/1I9XTZ_appR-S_DBG9rYSq6EmktB1levFfhPnuSApj94/edit?usp=sharing",
+                    img:  "/img/google-logo.png"
+                }
             ],
         },
 
         introAssets: {
             type: "image",
-            src: "/img/LACED/lacedIntro.png",
-            alt: "Laced hero",
+            src: "/img/AVOO/avoo-1.png",
+            alt: "AVOO overview"
         },
 
         blocks: [
             {
                 id: "mockups",
                 type: "hero-mockup",
-                bgText: "LACE(D) YOUR NIKE SHOES!",
+                bgText: "BUILD BETTER MONEY HABITS",
                 assets: [
                     {
                         type: "image",
-                        src: "/img/LACED/laced-phone1.png",
+                        src: "/img/AVOO/avoo-phone-1.png",
                         side: "left",
-                        x: 20,
-                        y: -110,
+                        x: 30,
+                        y: -90
                     },
                     {
                         type: "image",
-                        src: "/img/LACED/laced-phone2.png",
+                        src: "/img/AVOO/avoo-laptop-2.png",
                         side: "right",
-                        x: -70,
-                        y: 135,
-                    },
-                ],
+                        x: -50,
+                        y: 80
+                    }
+                ]
             },
 
             {
@@ -151,14 +158,16 @@ export const CASE_STUDIES_DESIGN: CaseStudy[] = [
                 type: "text",
                 variant: "body",
                 text:
-                    "AIY expanded its desktop tooling into a mobile application to support sneakerheads and resellers who needed reliable access during live drops—without relying on a powerful laptop. Laced was designed as a lightweight, pocket-ready companion that brought core functionality to users wherever they were.",
+                    "AVOO was developed as my capstone project for the Google UX Design Professional Certificate. The goal was to design a financial-wellness experience that makes budgeting less intimidating and more habit-driven for young adults who struggle to consistently track spending."
             },
 
             {
-                id: "gallery",
+                id: "gallery-problem",
                 type: "media",
                 variant: "single",
-                assets: [{ type: "image", src: "/img/LACED/laced2.png", alt: "Laced UI" }],
+                assets: [
+                    { type: "image", src: "/img/AVOO/GoogleProblem.png", alt: "Problem and goal" }
+                ]
             },
 
             {
@@ -166,7 +175,55 @@ export const CASE_STUDIES_DESIGN: CaseStudy[] = [
                 type: "text",
                 variant: "body",
                 text:
-                    "I owned the Flutter app end-to-end, including UI implementation, local persistence with SQLite, and integration with existing backend services. I designed the local data layer to be predictable and resilient—handling schema changes, safe upgrades, and data consistency—while keeping the app responsive under real-time usage during drops.",
+                    "Research interviews and secondary analysis revealed that many users abandon budgeting tools within weeks due to complexity, friction, or lack of motivation. The design direction focused on reducing cognitive load, guiding users through small achievable steps, and reinforcing progress through clear feedback rather than dense analytics."
+            },
+
+            {
+                id: "gallery-persona",
+                type: "media",
+                variant: "single",
+                assets: [
+                    { type: "image", src: "/img/AVOO/persona.png", alt: "Primary persona" }
+                ]
+            },
+
+            {
+                id: "gallery-sketches",
+                type: "media",
+                assets: [
+                    { type: "image", src: "/img/AVOO/AVOO-3.jpeg", alt: "Sketch 1" },
+                    { type: "image", src: "/img/AVOO/AVOO-4.jpeg", alt: "Sketch 2" },
+                    { type: "image", src: "/img/AVOO/AVOO-5.jpeg", alt: "Sketch 3" },
+                    { type: "image", src: "/img/AVOO/AVOO-6.jpeg", alt: "Sketch 4" }
+                ]
+            },
+
+            {
+                id: "note-3",
+                type: "text",
+                variant: "body",
+                text:
+                    "Early paper wireframes were used to rapidly explore navigation, reminders, and dashboard structure before committing to detailed visuals. During this phase I also evaluated accessibility considerations, including color contrast and color-blind friendly palettes, ensuring information hierarchy was readable without relying solely on color."
+            },
+
+            {
+                id: "gallery-lowfi",
+                type: "media",
+                variant: "double",
+                assets: [
+                    { type: "image", src: "/img/AVOO/lowfiMobile.png", alt: "Low fidelity mobile" },
+                    { type: "image", src: "/img/AVOO/lowfiWeb.png", alt: "Low fidelity web" }
+                ]
+            },
+
+            {
+                id: "gallery-proto",
+                type: "media",
+                variant: "double",
+                assets: [
+                    { type: "image", src: "/img/AVOO/protoMobile.png", alt: "Prototype mobile" },
+                    { type: "image", src: "/img/AVOO/protoWeb.png", alt: "Prototype web" }
+                ]
             },
 
             {
@@ -174,14 +231,24 @@ export const CASE_STUDIES_DESIGN: CaseStudy[] = [
                 type: "text",
                 variant: "body",
                 text:
-                    "Laced launched successfully on both Android and iOS and has since reached over 1.8k Android users and 400+ iOS users. I continue to maintain the app with a focus on stability, performance, and long-term scalability as the product evolves.",
-            },
+                    "This project established my foundation in structured UX thinking: translating research into design decisions, validating usability early, and building prototypes that communicate a clear product narrative from onboarding through long-term habit formation."
+            }
         ],
 
         actions: {
-            primary: { label: "Get it On Google Play Store", href: "", img: "/img/google.png", external: true },
-            secondary: { label: "Get it On App Store", href: "", img: "/img/apple.png", external: true },
-        },
+            primary: {
+                label: "View Figma Prototype",
+                href: "https://www.figma.com/design/29NXlTWKs1hQkuIfvnFhia/UX-Course?node-id=4-2&t=itVUmwmUpuW1iaF2-1",
+                external: true,
+                img: "/img/figma.png"
+            },
+            secondary: {
+                label: "View Research Deck",
+                href: "https://docs.google.com/presentation/d/1I9XTZ_appR-S_DBG9rYSq6EmktB1levFfhPnuSApj94/edit?usp=sharing",
+                external: true,
+                img: "/img/google-logo.png"
+            }
+        }
     },
 
     // ---------------- SALEMTEK ----------------
