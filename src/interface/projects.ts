@@ -343,4 +343,99 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     },
   },
+
+ // ---------------- Zentry ----------------
+   {
+    slug: "zentry",
+    header: {
+      kind: "project",
+      title: "Zentry",
+      shortDescription:
+        "A GSAP-driven React remake inspired by the award-winning Zentry experience by RESN, built to deepen my understanding of animation timing, sequencing, and motion-driven layouts.",
+      work: ["Front End Developer", "React and TailwindCSS", "Animation Engineering with GSAP"],
+      responsibilities:
+        "Rebuilt the experience from scratch using React and GSAP, focusing on scroll-based animations, layered transitions, and motion choreography rather than visual duplication.",
+      links: [
+        { label: "Inspired by RESN's Zentry", href: "https://www.awwwards.com/sites/zentry" },
+        { label: "My work", href: "https://zentry-react-clone.netlify.app/" },
+      ],
+    },
+
+    introAssets: {
+      type: "image",
+      src: "/img/ZENTRY/zentryIntro.png",
+      alt: "Zentry hero",
+    },
+
+    blocks: [
+      {
+        id: "mockups",
+        type: "hero-mockup",
+        bgText: "REDEFINE GAMING",
+        assets: [
+          {
+            type: "image",
+            src: "/img/ZENTRY/zentry-laptop-1.png",
+            side: "left",
+            x: -50,
+            y: -60,
+          },
+          {
+            type: "image",
+            src: "/img/ZENTRY/zentry-phone-2.png",
+            side: "right",
+            x: 0,
+            y: -90,
+          },
+        ],
+      },
+
+      {
+        id: "note-1",
+        type: "text",
+        variant: "body",
+        text:
+          "Zentry was a personal exploration into animation-heavy interfaces using GSAP and React. The goal was not to replicate visuals pixel-for-pixel, but to understand how motion, timing, and spatial transitions shape the overall experience of a site.",
+      },
+
+      {
+        id: "gallery-1",
+        type: "media",
+        variant: "single",
+        assets: [{ type: "image", src: "/img/ZENTRY/zentry2.png", alt: "Zentry shot 1" }],
+      },
+
+      {
+        id: "note-2",
+        type: "text",
+        variant: "body",
+        text:
+          "This section focused on large-scale layout transitions. I experimented with scroll-driven animations, easing curves, and staggered element reveals to create a sense of scale and progression without overwhelming the user.",
+      },
+      // TODO: MAKE IT A GIF
+      {
+        id: "gallery-2",
+        type: "media",
+        variant: "single",
+        assets: [{ type: "image", src: "/img/ZENTRY/zentry3.png", alt: "Zentry shot 3" }],
+      },
+
+      {
+        id: "note-final",
+        type: "text",
+        variant: "body",
+        text:
+          "Through this project, I strengthened my understanding of GSAP timelines, transform coordination, and animation performance in React. Zentry served as a focused environment to practice building expressive motion systems while keeping the codebase structured and maintainable.",
+      },
+    ],
+
+    actions: {
+      primary: {
+        label: "My Zentry clone",
+        href: "https://zentry-react-clone.netlify.app/",
+        img: "",
+        external: true,
+      },
+    },
+  },  
 ];

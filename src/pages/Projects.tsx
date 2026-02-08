@@ -7,7 +7,7 @@ import OverlayAnimation from "../components/OverlayAnimation";
 
 const PROJECT_LINKS = [
   { label: "Laced", href: "/projects/laced", isNew: false },
-  { label: "Zentry", href: "/projects", isNew: true },
+  { label: "Zentry", href: "/projects/zentry", isNew: true },
   { label: "ShareCare", href: "/projects/sharecare", isNew: false },
   { label: "TSB2.0", href: "/projects/tsb-2", isNew: false },
   { label: "VirtuEscape", href: "/projects/virtuescape", isNew: false },
