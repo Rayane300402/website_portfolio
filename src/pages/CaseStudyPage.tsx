@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CASE_STUDIES } from "../interface/projects";
 import TopBar from "../components/TopBar";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useLocation, useParams } from "react-router-dom";
 import { useLayoutEffect, useMemo, useRef } from "react";
 import OverlayAnimation from "../components/OverlayAnimation";
 import { gsap } from "gsap";
@@ -10,21 +10,47 @@ import HeroTitleBand from "../components/CaseStudy/Title";
 import CaseStudyGrid from "../components/CaseStudy/Grid";
 import HeroMockupBlock from "../components/CaseStudy/MockBlock";
 import CaseStudyActions from "../components/CaseStudy/ActionButtons";
-import { CASE_STUDIES_DESIGN } from "../interface/designs";
+
+type Section = "design" | "project";
 
 const CaseStudyPage = () => {
   const { slug } = useParams();
+  const { pathname } = useLocation();
+
+  const section: Section = pathname.startsWith("/design")
+    ? "design"
+    : "project";
+
   const wipeRef = useRef<HTMLDivElement | null>(null);
   const caseStudyRef = useRef<HTMLDivElement | null>(null);
 
   const heroRef = useRef<HeroTitleBandRefs | null>(null);
 
-  const caseStudy = useMemo(
-    () =>
-      CASE_STUDIES.find((c) => c.slug === slug) ||
-      CASE_STUDIES_DESIGN.find((c) => c.slug === slug),
-    [slug],
-  );
+  const caseStudy = useMemo(() => {
+    if (!slug) return undefined;
+    return CASE_STUDIES.find((c) => c.slug === slug);
+  }, [slug]);
+
+  // ✅ not found: bounce back to the list you came from
+  if (!caseStudy) {
+    return (
+      <Navigate to={section === "design" ? "/design" : "/projects"} replace />
+    );
+  }
+
+  const kind = caseStudy.header.kind; // "design" | "project" | "both"
+
+  // ✅ gatekeeping rules
+  const allowedInDesign = kind === "design" || kind === "both";
+  const allowedInProjects = kind === "project" || kind === "both";
+
+  if (section === "design" && !allowedInDesign) {
+    return <Navigate to={`/projects/${slug}`} replace />;
+  }
+  if (section === "project" && !allowedInProjects) {
+    return <Navigate to={`/design/${slug}`} replace />;
+  }
+
 
   const colList = [
     {
@@ -59,6 +85,7 @@ const CaseStudyPage = () => {
     },
   ];
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
@@ -69,7 +96,6 @@ const CaseStudyPage = () => {
       }) => {
         const tl = gsap.timeline();
 
-        // wipe
         if (wipeRef.current) {
           tl.fromTo(
             wipeRef.current,
@@ -81,23 +107,17 @@ const CaseStudyPage = () => {
         const band = heroRef.current?.band;
         const title = heroRef.current?.title;
 
-        if (band) gsap.set(band, { xPercent: -110 }); // fully off left
+        if (band) gsap.set(band, { xPercent: -110 });
         if (title) gsap.set(title, { y: 80, opacity: 0 });
 
-        // band: quick left -> right swipe (no warping)
         if (band) {
           tl.to(
             band,
-            {
-              xPercent: 0,
-              duration: 0.55,
-              ease: "power3.out",
-            },
+            { xPercent: 0, duration: 0.55, ease: "power3.out" },
             "+=0.05",
           );
         }
 
-        // title: bottom -> up
         if (title) {
           tl.fromTo(
             title,
@@ -113,7 +133,6 @@ const CaseStudyPage = () => {
       mm.add("(max-width: 767px)", () =>
         buildTimeline({ bandFromX: -120, titleFromY: 80 }),
       );
-
       mm.add("(min-width: 768px)", () =>
         buildTimeline({ bandFromX: -220, titleFromY: 140 }),
       );
@@ -213,8 +232,10 @@ const CaseStudyPage = () => {
     }
   };
 
-  if (!caseStudy) return <Navigate to="/projects" replace />;
-
+  if (!caseStudy)
+    return (
+      <Navigate to={section === "design" ? "/design" : "/projects"} replace />
+    );
   return (
     <main
       ref={caseStudyRef}
@@ -223,11 +244,7 @@ const CaseStudyPage = () => {
       <OverlayAnimation wipeRef={wipeRef} className={`top-0 bg-ember-75`} />
 
       <div className="shrink-0 px-16 pt-14">
-        <TopBar
-          className="mb-8"
-          isHome={false}
-          isDesign={caseStudy.header.kind == "design" ? true : false}
-        />
+        <TopBar className="mb-8" isHome={false} isDesign={section === "design"} />
       </div>
 
       <section className="px-6  pr-6 sm:px-10 md:pr-12 lg:pr-16 pb-16">
