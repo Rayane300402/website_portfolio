@@ -821,11 +821,11 @@ export const CASE_STUDIES: CaseStudy[] = [
           href: "https://www.figma.com/design/PYBCmi2Xfe7iF6kDD2VEDh/Salemtek----Niyyah?node-id=0-1&t=gXPX67rhABXSoJJ8-1",
           img: "/img/figma.png"
         },
-        //            {
-        //     label: "View Research Slides",
-        //     href: "https://docs.google.com/presentation/d/1I9XTZ_appR-S_DBG9rYSq6EmktB1levFfhPnuSApj94/edit?usp=sharing",
-        //     img: "/img/google-logo.png"
-        // }
+        {
+          label: "View Research Slides",
+          href: "https://docs.google.com/presentation/d/12T75SAT2WO4FHve4xa6qgzzOA5HeVrL2ndJUJsPnJV8/edit?usp=sharing",
+          img: "/img/google-logo.png"
+        }
       ],
     },
 
@@ -918,24 +918,15 @@ export const CASE_STUDIES: CaseStudy[] = [
         assets: [
           {
             type: "image",
-            src: "/img/SALEMTEK/salemtek-sketch-1.png",
+            src: "/img/SALEMTEK/salemtek-sketch-1.jpeg",
             alt: "Sketch 1"
           },
           {
             type: "image",
-            src: "/img/SALEMTEK/salemtek-sketch-2.png",
+            src: "/img/SALEMTEK/salemtek-sketch-2.jpeg",
             alt: "Sketch 2"
           },
-          {
-            type: "image",
-            src: "/img/SALEMTEK/salemtek-sketch-3.png",
-            alt: "Sketch 3"
-          },
-          {
-            type: "image",
-            src: "/img/SALEMTEK/salemtek-sketch-4.png",
-            alt: "Sketch 4"
-          }
+
         ]
       },
 
@@ -1019,7 +1010,14 @@ export const CASE_STUDIES: CaseStudy[] = [
         label: "View Figma Prototype",
         href: "YOUR_FIGMA_LINK_HERE",
         external: true,
+        img:"/img/figma.png"
       },
+      secondary: {
+        label: "View Research Deck",
+        href: "https://docs.google.com/presentation/d/12T75SAT2WO4FHve4xa6qgzzOA5HeVrL2ndJUJsPnJV8/edit?usp=sharing",
+        external: true,
+        img: "/img/google-logo.png"
+      }
     },
   }
   ,
