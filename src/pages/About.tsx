@@ -67,7 +67,7 @@ const About = () => {
       <OverlayAnimation wipeRef={wipeRef} className={`top-0 bg-ember-75`} />
 
       <div className="shrink-0 px-16 pt-14">
-        <TopBar className="mb-8" homeHref="/" />
+        <TopBar className="mb-8" isHome={true} />
       </div>
 
       <section className="relative px-6 sm:px-12 lg:px-16 pb-12">

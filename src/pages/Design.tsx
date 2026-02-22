@@ -40,7 +40,7 @@ const Design = () => {
             height: "0%",
             duration: 0.9,
             ease: "power4.inOut",
-          }
+          },
         );
       }
 
@@ -54,7 +54,7 @@ const Design = () => {
           ease: "power3.out",
           stagger: 0.07,
         },
-        "-=0.25"
+        "-=0.25",
       );
     }, designRef);
     return () => ctx.revert();
@@ -69,7 +69,7 @@ const Design = () => {
       <OverlayAnimation wipeRef={wipeRef} className={`bottom-0 bg-forest-50`} />
 
       <div className="shrink-0 px-16 pt-14">
-        <TopBar className="mb-8" homeHref="/" />
+        <TopBar className="mb-8" isHome={true} />
       </div>
 
       <section className="flex-1 min-h-0 w-full grid grid-cols-1 md:grid-cols-2 gap-10 px-6 sm:px-10 md:px-12 lg:px-16 pb-12">

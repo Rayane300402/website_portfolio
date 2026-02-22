@@ -7,7 +7,7 @@ import OverlayAnimation from "../components/OverlayAnimation";
 import { gsap } from "gsap";
 import type { HeroTitleBandRefs } from "../components/CaseStudy/Title";
 import HeroTitleBand from "../components/CaseStudy/Title";
-import CaseStudyGrid from "../components/CaseStudy/Grid";
+import CaseStudyGrid, { type MetaCol } from "../components/CaseStudy/Grid";
 import HeroMockupBlock from "../components/CaseStudy/MockBlock";
 import CaseStudyActions from "../components/CaseStudy/ActionButtons";
 
@@ -52,7 +52,7 @@ const CaseStudyPage = () => {
   }
 
 
-  const colList = [
+  const colList: [MetaCol, MetaCol, MetaCol] = [
     {
       label: "WORK",
       lines: (caseStudy?.header.work ?? []).map((w) => (

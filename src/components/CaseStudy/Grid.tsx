@@ -1,6 +1,6 @@
 import React from "react";
 
-type MetaCol = {
+export type MetaCol = {
   label: string; // e.g. "WORK"
   lines: React.ReactNode[]; // lines under the label
 };
