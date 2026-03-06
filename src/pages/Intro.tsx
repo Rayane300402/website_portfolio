@@ -153,11 +153,11 @@ const Intro = () => {
         <div
           className="
             min-h-0
-            flex flex-col justify-center
+            flex flex-col justify-start
             py-14 lg:py-10 px-6 sm:px-8 lg:ps-16 lg:pe-4
           "
         >
-          <div className="w-full max-w-[520px] mx-auto lg:mx-0 lg:max-w-none flex flex-col gap-12 lg:h-full lg:justify-between lg:gap-0">
+          <div className="w-full max-w-[520px] mx-auto lg:mx-0 lg:max-w-none flex flex-col gap-12 lg:gap-6">
             {/* Top block */}
             <div className="w-full">
               <IntroText />

@@ -1,11 +1,15 @@
 const ProfileCard = () => {
   return (
-    <div className="relative w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[400px] aspect-4/5 mx-auto lg:mx-0">
+    <div className="relative profile-card-h2 w-full mb-14">
       {/* ORANGE CONTAINER */}
       <div
         className="
           absolute
-          inset-0
+         left-0
+          right-auto
+          top-0
+          bottom-0
+          w-[400px]
           bg-[#B76939]
           rounded-[10px]
         "
@@ -58,7 +62,7 @@ const ProfileCard = () => {
           h-full
           w-auto
           max-w-none
-          translate-x-8 sm:translate-x-10 lg:translate-x-12
+          translate-x-8 sm:translate-x-10 lg:translate-x-14
           object-cover
         "
       />

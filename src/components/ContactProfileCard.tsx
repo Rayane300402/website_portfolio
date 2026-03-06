@@ -11,10 +11,10 @@ const ContactProfileCard = () => {
           absolute
           bottom-0
           left-0
-          h-full
+          h-[95%]
           w-auto
           object-cover
-          translate-x-24
+          translate-x-36
           scale-x-[-1]    
           z-20
         "
@@ -45,13 +45,13 @@ const ContactProfileCard = () => {
         >
           <div className="flex flex-col items-center space-y-8 mt-2">
             <span className="-rotate-90 text-sm tracking-[0.2em]">
-              <Link to="/" className="cursor-pointer">HOME</Link>
+              <Link to="/" className="cursor-pointer txt-hover">HOME</Link>
             </span>
 
             <div className="h-28 w-px bg-white" />
           </div>
 
-          <span className="-rotate-90 text-sm tracking-[0.2em] mb-2">
+          <span className="-rotate-90 text-sm tracking-[0.2em] mb-2 z-30">
             ©2025
           </span>
         </div>
