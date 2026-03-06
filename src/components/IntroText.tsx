@@ -1,7 +1,7 @@
 
 const IntroText = () => {
   return (
-        <div className="text-white">
+        <div className="text-white text-center lg:text-left">
       {/* Name */}
       <h1
         className="
@@ -16,7 +16,7 @@ const IntroText = () => {
       <p
         className="
           font-segoe font-light 
-          text-[24px] leading-[1.4] mt-4 no-select
+          text-[24px] leading-[1.4] mt-2 no-select
         "
       >
         Software Developer / UI UX <br />
@@ -27,7 +27,7 @@ const IntroText = () => {
       <p
         className="
           font-segoe font-light 
-          text-[24px] leading-[1.4] mt-6 no-select
+          text-[24px] leading-[1.4] mt-4 no-select
         "
       >
         Currently working full-time as a Software <br />

@@ -6,13 +6,13 @@ import { gsap } from "gsap";
 import NavWord from "../components/Nav";
 import OverlayAnimation from "../components/OverlayAnimation";
 
-  const NAV_LINKS = [
-    { label: "PROJECT", href: "/projects" },
-    { label: "DESIGN", href: "/design" },
-    { label: "ABOUT", href: "/about" },
-    { label: "CONTACT", href: "/contact" },
-    { label: "CV", href: "/docs/softwareDev.pdf", download: true },
-  ];
+const NAV_LINKS = [
+  { label: "PROJECT", href: "/projects" },
+  { label: "DESIGN", href: "/design" },
+  { label: "ABOUT", href: "/about" },
+  { label: "CONTACT", href: "/contact" },
+  { label: "CV", href: "/docs/softwareDev.pdf", download: true },
+];
 
 const Intro = () => {
   const rightScrollRef = useRef<HTMLDivElement | null>(null);
@@ -23,51 +23,58 @@ const Intro = () => {
 
   const wipeRef = useRef<HTMLDivElement | null>(null); // wipe animation
 
-
-   const handleWheel = useCallback((e: React.WheelEvent) => {
-    // md breakpoint = 768px
-    if (window.innerWidth < 768) return; // ✅ allow normal page scroll on sm
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    // lg breakpoint = 1024px
+    if (window.innerWidth < 1024) return;
 
     const el = rightScrollRef.current;
     if (!el) return;
 
     el.scrollTop += e.deltaY;
-    e.preventDefault(); // ✅ only block page scroll on md+
+    e.preventDefault();
   }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
 
-      if(wipeRef.current) {
+      if (wipeRef.current) {
         tl.fromTo(
           wipeRef.current,
-          {height:"100%"},
+          { height: "100%" },
           {
             height: "0%",
             duration: 0.9,
-            ease: "power4.inOut"
-          }
+            ease: "power4.inOut",
+          },
         );
       }
 
       if (profileBlockRef.current) {
-        tl.from(profileBlockRef.current, {
-          y: 40,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
-        }, "-=0.25");
+        tl.from(
+          profileBlockRef.current,
+          {
+            y: 40,
+            opacity: 0,
+            duration: 0.9,
+            ease: "power3.out",
+          },
+          "-=0.25",
+        );
       }
 
-      tl.from(".nav-word", {
-        x: 80,
-        opacity: 0,
-        skewX: -12,
-        duration: 0.6,
-        ease: "power3.out",
-        stagger: 0.07,
-      }, "-=0.55");
+      tl.from(
+        ".nav-word",
+        {
+          x: 80,
+          opacity: 0,
+          skewX: -12,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0.07,
+        },
+        "-=0.55",
+      );
     }, introRef);
     return () => ctx.revert();
   }, []);
@@ -93,11 +100,9 @@ const Intro = () => {
     <main
       ref={introRef}
       onWheel={handleWheel}
-      className=" h-screen w-screen overflow-x-hidden overflow-y-hidden bg-forest-50 flex items-center justify-center"
+      className=" main-setup overflow-y-auto lg:overflow-hidden bg-forest-50! "
     >
-
-      <OverlayAnimation wipeRef={wipeRef} className={`top-0 bg-ember-75`}/>
-
+      <OverlayAnimation wipeRef={wipeRef} className={`top-0 bg-ember-75`} />
 
       {/* hamburger icon on md and smaller */}
       <button
@@ -139,47 +144,36 @@ const Intro = () => {
 
       <section
         className="
-          w-full h-full
-           grid grid-cols-1 lg:grid-cols-[minmax(520px,0.4fr)_1fr]
-
-          gap-12
-          py-14
+          flex-1 min-h-0 w-full
+          grid grid-cols-1 lg:grid-cols-[minmax(520px,0.4fr)_1fr]
+          lg:gap-x-12
         "
       >
         {/* LEFT COLUMN */}
         <div
           className="
-    flex flex-col h-full
-    lg:ms-16 lg:min-w-[520px]
-    w-full max-w-[520px] mx-auto
-    items-center justify-center
-  "
+            min-h-0
+            flex flex-col justify-center
+            py-14 lg:py-10 px-6 sm:px-8 lg:ps-16 lg:pe-4
+          "
         >
-          {/* Top block */}
-          <div className="min-h-[200px] w-full">
-            <IntroText />
-          </div>
-
-          {/* Bottom block */}
-          <div
-            ref={profileBlockRef}
-            className="min-h-[300px] grow flex items-end pt-10 w-full"
-          >
-            <ProfileCard />
+          <div className="w-full max-w-[520px] mx-auto lg:mx-0 lg:max-w-none flex flex-col gap-12 lg:h-full lg:justify-between lg:gap-0">
+            {/* Top block */}
+            <div className="w-full">
+              <IntroText />
+            </div>
+            {/* Bottom block */}
+            <div ref={profileBlockRef} className="w-full">
+              <ProfileCard />
+            </div>
           </div>
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="hidden lg:flex h-full me-16 pl-24 pe-14">
+        <div className="hidden lg:flex min-h-0 py-14 pe-16">
           <div
             ref={rightScrollRef}
-            className="
-      flex flex-col justify-center
-      h-full w-full
-      
-      scroll-hidden
-      pr-2
-    "
+            className="flex flex-col h-full w-full scroll-hidden ps-12"
           >
             {NAV_LINKS.map((item) => (
               <h2 key={item.label}>

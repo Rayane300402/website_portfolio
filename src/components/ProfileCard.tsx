@@ -1,15 +1,11 @@
 const ProfileCard = () => {
   return (
-    <div className="relative profile-card-h w-full">
+    <div className="relative w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[400px] aspect-4/5 mx-auto lg:mx-0">
       {/* ORANGE CONTAINER */}
       <div
         className="
           absolute
-          left-0
-          right-auto
-          top-0
-          bottom-0
-          w-[400px]
+          inset-0
           bg-[#B76939]
           rounded-[10px]
         "
@@ -23,7 +19,7 @@ const ProfileCard = () => {
           "
         >
           <div className="flex flex-col items-center space-y-4">
-            <span className="-rotate-90 text-sm tracking-[0.2em]">
+            <span className="-rotate-90 text-sm tracking-[0.2em] txt-hover">
               <a
                 href="https://www.linkedin.com/in/rayane-naboulsi"
                 target="_blank"
@@ -33,7 +29,7 @@ const ProfileCard = () => {
                 LI
               </a>
             </span>
-            <span className="-rotate-90 text-sm tracking-[0.2em]">
+            <span className="-rotate-90 text-sm tracking-[0.2em] txt-hover">
               <a
                 href="https://github.com/Rayane300402"
                 target="_blank"
@@ -46,7 +42,7 @@ const ProfileCard = () => {
             <div className="h-28 w-px bg-white" />
           </div>
           <span className="-rotate-90 text-sm tracking-[0.2em] mb-2 no-select">
-            ©2025
+            ©2026
           </span>
         </div>
       </div>
@@ -57,13 +53,12 @@ const ProfileCard = () => {
         alt="Profile illustration"
         className="
           absolute
-          left-0
-          right-auto
           top-0
-          bottom-0
-          translate-x-12
-          w-auto
+          left-0
           h-full
+          w-auto
+          max-w-none
+          translate-x-8 sm:translate-x-10 lg:translate-x-12
           object-cover
         "
       />

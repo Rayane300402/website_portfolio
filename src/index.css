@@ -64,8 +64,8 @@ body {
   --color-ember-75: #b76939;
 
   --font-montserrat: "montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-glory-migella-italic: "glory-migella-italic", ui-sans-serif, system-ui,
-    sans-serif;
+  --font-glory-migella-italic:
+    "glory-migella-italic", ui-sans-serif, system-ui, sans-serif;
   --font-glory-migella: "glory-migella", ui-sans-serif, system-ui, sans-serif;
   --font-segoe-ui: "segoe-ui", ui-sans-serif, system-ui, sans-serif;
 }
@@ -79,7 +79,9 @@ body {
     @apply leading-none inline-block;
     font-family: "glory-migella";
     will-change: transform;
-    transition: font-style 0.35s ease, font-family 0.35s ease;
+    transition:
+      font-style 0.35s ease,
+      font-family 0.35s ease;
     transition-delay: 0s, 0s;
   }
 
@@ -120,8 +122,16 @@ body {
     @apply underline underline-offset-4 decoration-white/60 hover:decoration-white;
   }
 
-  .profile-card-h {
-    height: clamp(500px, 60vh, 600px);
+  .txt-hover {
+    background: linear-gradient(currentColor 0 0) bottom left/
+      var(--underline-width, 0%) 0.1em no-repeat;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-size 0.5s;
+  }
+
+  .txt-hover:hover {
+    --underline-width: 100%;
   }
 
   .no-select {
